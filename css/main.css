@@ -1,0 +1,170 @@
+.main-wrapper{
+	background: url(../img/banner.jpg) no-repeat;
+	/*新知识点*/
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: center center;
+}
+header{
+	background: rgba(0,0,0,0.4);
+}
+nav{
+	height: 50px;
+}
+button{
+	border: none;
+	background: #333;
+	color: #eee;
+	font-size: 18px;
+	border-radius: 5px;
+}
+#banner{
+	height: 700px;
+	color: #FFF;
+}
+nav ul li{
+	display: block;
+	float: right;
+	line-height: 50px;
+	margin-right: 20px;
+}
+nav ul li a{
+	display: block;
+	padding: 0 20px;
+	line-height: inherit;
+	color: #FFF;
+	text-decoration: none;
+}
+nav ul li a:hover{
+	background: rgba(255,255,255,0.3);
+	border-bottom: 2px solid #FFF;
+}
+nav ul li.logo{
+	float: left;
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	margin-left: 30px;
+}
+#banner .inner{
+	position:relative;
+	top:180px;
+	max-width: 300px;
+	text-align: center;
+	margin:0 auto;
+}
+#banner button{
+	padding: 12px 24px;
+}
+#banner h1{
+	font-size: 30px;
+	line-height: 50px;
+	font-weight: bold;
+	border-top: 2px solid #FFF;
+	border-bottom: 2px solid #FFF;
+}
+.sub-heading{
+	line-height: 22px;
+	margin: 10px;
+}
+#banner .inner .more{
+	margin-top: 320px;
+}
+.content .green{
+	/*max-width: 1000px;*/
+	margin:0 auto;
+	padding:50px;
+	color: #FFF;
+	background: rgba(255,,255,0.6);
+	text-align:center;
+}
+.content h2{
+	font-size: 30px;
+	font-weight: bold;
+}
+.content .green .icon{
+	display: inline-block;
+	width:80px;
+	height: 80px;
+	background: #800;
+	transform: rotate(45deg);
+	margin:30px;
+}
+.content .article-preview{
+	overflow: hidden;
+	background: #332;
+	color: #FFF;
+}
+.article-preview:nth-child(odd){
+	background:rgba(111,111,111,0.9);
+}
+.gray .img-section{
+	float: left;
+	width:45%;
+	font-size: 0;
+}
+.gray .text-section{
+	float: right;
+	width: 55%;
+	text-align: center;
+	margin-top: 120px;
+}
+.purple{
+	padding: 80px;
+	text-align: center;
+	background: #2F1F49;
+	overflow: hidden;
+	color:#FFF;
+}
+.card-group{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 50px;
+
+}
+.card h3{
+	font-size: 24px;
+	font-weight: bold;
+}
+.card{
+	width: 50%;
+	padding: 50px;
+	float: left;
+	min-height: 200px;
+	border: 1px solid #FFF;
+}
+.card:first-child{
+	background: rgba(0,0,0,0.3);
+}
+.card:nth-child(2){
+	background: rgba(0,0,0,0.6);
+}
+.card:nth-child(3){
+	background-color: rgba(0,0,0,0.5);
+}
+.card:nth-child(4){
+	background: rgba(0,0,0,0.2);
+}
+.card:nth-child(5){
+	background: rgba(0,0,0,0.12);
+}
+.card:nth-child(6){
+	background: rgba(0,0,0,0.55);
+}
+footer{
+	min-height: 150px;
+	background: #333;
+	color: #FFF;
+	
+	text-align:center;
+}
+.share{
+	margin: 24px;
+	padding:10px;
+	font-size: 20px;
+	display: inline-block;
+}
+.copy{
+	margin-top: 10px;
+}
+
