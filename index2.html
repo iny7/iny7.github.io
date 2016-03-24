@@ -3,11 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>尝试</title>
-	<link rel="stylesheet" href="css/style.css">
 	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/map.css">
 	<style type="text/css">
 		#box{
 			transform:translateY(-200%) translateX(-200%);
+		}
+		#cell-border{
+			transform:translateY(200%) translateX(200%);	
 		}
 	</style>
 </head>
@@ -15,7 +19,9 @@
 <body>
 	<section class="map">
 		<!-- 这里找一个小人在map上走路的样子-->
-		<div class="cell-border" id="cell-border"></div>
+		<div class="cell-border" id="cell-border">
+			<div class="boy" id="boy"></div>
+		</div>
 		<ol>
 			<li class="cell used"><a href="#"></a></li>
 			<li class="cell"><a href="#"></a></li>
@@ -93,5 +99,6 @@
 	</ul>
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/script.js"></script>
+	<script src="js/boy.js"></script>
 </body>
 </html>

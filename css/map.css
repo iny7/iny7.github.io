@@ -1,0 +1,79 @@
+.map{
+	position:fixed;
+	display:flex;
+	width:150px;
+	height:150px;
+	/* border:2px solid yellow; */
+	background-color:#DDD;
+	right:40px;
+	top:40px;
+	z-index:20;
+	border-radius:5%;
+	overflow:hidden;
+	box-shadow:0 0 10px 4px #CCC;
+	background-color:#110;
+}
+.map ol{
+	display:flex;
+	flex-wrap:wrap;
+}
+.cell{
+	text-align:center;
+	width:50px;
+	height:50px;
+	color:#666;
+	line-height:50px;
+	font-size:20px;
+	box-sizing:border-box;
+	border-radius:5px;
+	background-color:#110;
+
+}
+.cell.used{
+	border-radius: 10px;
+	border-radius:0;
+	background-color:#888;
+}
+.cell-border{
+	position:absolute;
+	width:50px;
+	height:50px;
+	background-color:#564234;
+	box-sizing:border-box;
+	border-radius:10px;
+}
+.cell a{
+	display:block;
+	height:100%;
+	color:#666;
+}
+.cell a:hover{
+	color:#900;
+}
+.boy{
+	/* position: absolute; */
+	width: 60%;
+	height: 80%;
+	margin:5px auto;
+	background: url(../images/boy.png);
+	background-size: 700% 200%;
+	background-position: -100% -100%; 
+}
+.boy .walk{
+	-webkit-animation: walk 1s 0.2s steps(1,start) infinite;
+	-webkit-animation-fill-mode: backwards;
+}
+@-webkit-keyframes walk{
+	25%{
+		background-position: -400% 0;
+	}
+	50%{
+		background-position: -200% -100%; 
+	}
+	75%{
+		background-position: -100% -100%;
+	}
+	100%{
+		background-position: 0 -100%; 
+	}
+}
