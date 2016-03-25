@@ -131,5 +131,8 @@ $(function(){
 	//应该传个参数,控制比如要不要小地图这种功能
 	var map = new Map(mapArr);
 	//右上角map动态生成?
-	
+	//小男孩是观察者,Map是事件源,这次一定要实现观察者模式自定义事件
+	var boy = $("#boy")
+	console.log(boy)
+	boy.addClass('walk')
 })

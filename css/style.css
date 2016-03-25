@@ -32,100 +32,46 @@ body{
 	display:block;
 	width:100%;
 	height:100%;
-}
-.first{
-}
-.first:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #ccc;
-	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
-}
-.fourth{
-	top:100%;
-	box-sizing:border-box;
 	padding:40px;
+	box-sizing:border-box;
 }
-.fourth:before{
+.box li:before{
 	position: absolute;
 	content: '';
 	top: 0;
 	left:0;
 	width: 100%;
 	height: 100%;
-	background:#747;
 	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
 	filter:alpha(opacity=0.5);
+	z-index: -1;
+	background:#616569;
+}
+.box li:nth-child(2n+1):before{
+	background-color: #3A495D;
+}
+.fourth{
+	top:100%;
 }
 .fifth{
 	top:100%;
 	left:100%;
 }
-.fifth:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	opacity: 0.5;
-	z-index: -1;
-	background:#520;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
-}
 .eighth{
 	top:200%;
 	left:100%;
 }
-.eighth:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	background:#752;
-	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
-}
 .ninth{
 	top:200%;
 	left:200%;
-}
-.ninth:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	background:#618;	
-	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
 }
 /*首页*/
 .info{
 	width: 300px;
 	text-align: center;
 	margin:10% auto;
+	font-size:24px;
+	color:#CCC;
 }
 .img-box{
 	position:relative;
@@ -149,9 +95,9 @@ body{
 	top:0;
 	width: 100%;
 	height:100%;
-	background-image:linear-gradient(to top left, #7E7E84, #5F2828);
+	background-image:linear-gradient(to top left, #7E7E84, #000);
 	border-radius:50%;
-	transition: all 10s linear;
+	transition: all 3s linear;
 	box-shadow:0 0 20px 2px #7E7E84,0 0 20px -2px #7E7E84;
 	box-sizing:border-box;
 }
@@ -184,12 +130,15 @@ body{
 	border-radius: 5px;
 	padding: 12px 24px;
 }
-.first h1{
-	font-size: 30px;
+.info .career{
 	line-height: 50px;
-	font-weight: bold;
 	border-top: 2px solid #FFF;
-	border-bottom: 2px solid #FFF;
+	/* border-bottom: 2px solid #FFF; */
+}
+.page-title{
+	font-size: 30px;
+	color:#DDD;
+	font-weight: bold;
 }
 /*第二页*/
 .card-group{
@@ -204,9 +153,17 @@ body{
 }
 .card{
 	box-sizing:border-box;
+	text-align:center;
+	line-height:30px;
+	font-size:20px;
 	width: 33%;
 	padding: 30px;
+	color:#FFF;
 	border: 1px solid #FFF;
+	background: rgba(0,0,0,0.3);
+	text-overflow:ellipsis;
+	/* white-space:nowrap; */
+	/* overflow:hidden; */
 }
 .card:nth-child(2n){
 	background: rgba(0,0,0,0.6);
