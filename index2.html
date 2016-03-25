@@ -7,19 +7,19 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/map.css">
 	<style type="text/css">
-		#box{
+		/* [data-map='box']{
 			transform:translateY(-200%) translateX(-200%);
 		}
-		#cell-border{
+		[data-map='border']{
 			transform:translateY(200%) translateX(200%);	
-		}
+		} */
 	</style>
 </head>
 <!-- 尝试开发一个可以L形状浏览的全屏页面 -->
 <body>
 	<section class="map">
 		<!-- 这里找一个小人在map上走路的样子-->
-		<div class="cell-border" id="cell-border">
+		<div class="cell-border" data-map="border">
 			<div class="boy" id="boy"></div>
 		</div>
 		<ol>
@@ -34,21 +34,20 @@
 			<li class="cell used"><a href="#"></a></li>
 		</ol>		
 	</section>
-	<ul id="box">
+	<ul class="box" data-map="box">
 		<li class="first" id="first">
 			<div class="info">
 			<!-- hover 换笑脸 或者html5笑脸视频?-->
 				<div class="img-box">
-					<div class="img"></div>
-					<!-- 这里用css3的渐变色好一点-->
 					<div class="img-border"></div>
 					<div class="img-mask">
-						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing el</h3>
-						<p></p>
+						<!-- 这里用气泡弹出-->
+						<p>谢谢您的到访!</p>
 					</div>
+					<div class="img"></div>
 				</div>
 				<h3>秦长熙</h3>
-				<p>Web前端工程师</p>
+				<p>Web前端实习生</p>
 				<button>了解我</button>
 			</div>
 		</li>
