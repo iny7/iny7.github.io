@@ -21,124 +21,73 @@ body{
 	background-size: cover;
 	background-position: center center;
 }
-#box{
+.box{
 	position:absolute;
 	display:block;
 	width:100%;
 	height:100%;
 }
-#box li{
+.box li{
 	position:absolute;
 	display:block;
 	width:100%;
 	height:100%;
-}
-.first{
-}
-.first:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #ccc;
-	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
-}
-.fourth{
-	top:100%;
-	box-sizing:border-box;
 	padding:40px;
+	box-sizing:border-box;
 }
-.fourth:before{
+.box li:before{
 	position: absolute;
 	content: '';
 	top: 0;
 	left:0;
 	width: 100%;
 	height: 100%;
-	background:#747;
 	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
 	filter:alpha(opacity=0.5);
+	z-index: -1;
+	background:#616569;
+}
+.box li:nth-child(2n+1):before{
+	background-color: #3A495D;
+}
+.fourth{
+	top:100%;
 }
 .fifth{
 	top:100%;
 	left:100%;
 }
-.fifth:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	opacity: 0.5;
-	z-index: -1;
-	background:#520;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
-}
 .eighth{
 	top:200%;
 	left:100%;
 }
-.eighth:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	background:#752;
-	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
-}
 .ninth{
 	top:200%;
 	left:200%;
-}
-.ninth:before{
-	position: absolute;
-	content: '';
-	top: 0;
-	left:0;
-	width: 100%;
-	height: 100%;
-	background:#618;	
-	opacity: 0.5;
-	z-index: -1;
-	/*z-index: inherit;*/
-	/*IE*/
-	filter:alpha(opacity=0.5);
 }
 /*首页*/
 .info{
 	width: 300px;
 	text-align: center;
 	margin:10% auto;
+	font-size:24px;
+	color:#CCC;
 }
 .img-box{
 	position:relative;
 	margin:0 auto;
-	height:240px;
-	width:240px;
-	overflow:hidden;
+	height:260px;
+	width:260px;
+	/* overflow:hidden; */
 }
 .img{
-	width: 100%;
-	height:100%;
+	position:absolute;
+	margin:50%;
+	transform:translateX(-50%) translateY(-50%);
+	width: 95%;
+	height:95%;
 	border-radius:50%;
-	/* background-image:url(images/me.jpg); */
+	background-image:url(../images/me.jpg);
 	background-size:cover;
 }
 .img-border{
@@ -146,11 +95,10 @@ body{
 	top:0;
 	width: 100%;
 	height:100%;
+	background-image:linear-gradient(to top left, #7E7E84, #000);
 	border-radius:50%;
-	border:6px solid #B7C0D6;
-	border-bottom:6px solid #5F2828;
-	border-right:6px solid #5F2828;
-	transition: all 1s;
+	transition: all 3s linear;
+	box-shadow:0 0 20px 2px #7E7E84,0 0 20px -2px #7E7E84;
 	box-sizing:border-box;
 }
 .img-mask{
@@ -159,16 +107,17 @@ body{
 	height:100%;
 	border-radius:50%;
 	top:0;
+	z-index:1;
 	background-color:#333;
-	transition: all 1s;
+	transition: all 1.5s;
 	opacity:0;
-	z-index:-1;
+	padding-top:35%;
 	box-sizing:border-box;
 	color:#FFF;
-	padding-top:30%;
+	font-size:24px;
 }
 .img-box:hover .img-border{
-	transform:rotate(180deg);
+	transform:rotate(1080deg);
 }
 .img-box:hover .img-mask{
 	opacity:0.3;
@@ -181,12 +130,15 @@ body{
 	border-radius: 5px;
 	padding: 12px 24px;
 }
-.first h1{
-	font-size: 30px;
+.info .career{
 	line-height: 50px;
-	font-weight: bold;
 	border-top: 2px solid #FFF;
-	border-bottom: 2px solid #FFF;
+	/* border-bottom: 2px solid #FFF; */
+}
+.page-title{
+	font-size: 30px;
+	color:#DDD;
+	font-weight: bold;
 }
 /*第二页*/
 .card-group{
@@ -201,9 +153,17 @@ body{
 }
 .card{
 	box-sizing:border-box;
+	text-align:center;
+	line-height:30px;
+	font-size:20px;
 	width: 33%;
 	padding: 30px;
+	color:#FFF;
 	border: 1px solid #FFF;
+	background: rgba(0,0,0,0.3);
+	text-overflow:ellipsis;
+	/* white-space:nowrap; */
+	/* overflow:hidden; */
 }
 .card:nth-child(2n){
 	background: rgba(0,0,0,0.6);

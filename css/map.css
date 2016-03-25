@@ -59,7 +59,7 @@
 	background-size: 700% 200%;
 	background-position: -100% -100%; 
 }
-.boy .walk{
+.boy.walk{
 	-webkit-animation: walk 1s 0.2s steps(1,start) infinite;
 	-webkit-animation-fill-mode: backwards;
 }

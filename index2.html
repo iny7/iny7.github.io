@@ -2,16 +2,16 @@
 <html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
-	<title>尝试</title>
+	<title>秦长熙的简历</title>
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/map.css">
 	<style type="text/css">
-		#box{
-			transform:translateY(-200%) translateX(-200%);
+		[data-map='box']{
+			transform:translateY(-100%) translateX(-100%);
 		}
-		#cell-border{
-			transform:translateY(200%) translateX(200%);	
+		[data-map='border']{
+			transform:translateY(100%) translateX(100%);	
 		}
 	</style>
 </head>
@@ -19,7 +19,7 @@
 <body>
 	<section class="map">
 		<!-- 这里找一个小人在map上走路的样子-->
-		<div class="cell-border" id="cell-border">
+		<div class="cell-border" data-map="border">
 			<div class="boy" id="boy"></div>
 		</div>
 		<ol>
@@ -34,61 +34,56 @@
 			<li class="cell used"><a href="#"></a></li>
 		</ol>		
 	</section>
-	<ul id="box">
+	<ul class="box" data-map="box">
 		<li class="first" id="first">
 			<div class="info">
 			<!-- hover 换笑脸 或者html5笑脸视频?-->
 				<div class="img-box">
-					<div class="img"></div>
-					<!-- 这里用css3的渐变色好一点-->
 					<div class="img-border"></div>
 					<div class="img-mask">
-						<h3>Lorem ipsum dolor sit amet, consectetur adipisicing el</h3>
-						<p></p>
+						<!-- 这里用气泡弹出-->
+						<p>谢谢您的到访!</p>
 					</div>
+					<div class="img"></div>
 				</div>
-				<h3>秦长熙</h3>
-				<p>Web前端工程师</p>
+				<p>秦长熙</p>
+				<p class="career">Web前端 学生</p>
+				<!--这里弄个下箭头-->
 				<button>了解我</button>
 			</div>
 		</li>
 		<li class="fourth" id="fourth">
-			<div class="heading-wrapper">
-				<h2>个人简介</h2>
-				<hr>
-				<div class="sub-heading">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				</div>
-			</div>
+			<h2 class="page-title">个人简介</h2>
+			<hr>
 			<div class="card-group">
 				<div class="card">
-					<h3>Home</h3>
-					<p class="sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<h3>基本信息</h3>
 				</div>
 				<div class="card">
-					<h3>Home</h3>
-					<p class="sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<h3>技术简介</h3>
 				</div>
 				<div class="card">
-					<h3>Home</h3>
-					<p class="sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<h3>联系方式</h3>
 				</div>
 				<div class="card">
-					<h3>Home</h3>
-					<p class="sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<p>1995年 / 男生<p>
+					<p>目前就读于四川大学软件学院</p>
+					<p>今年大三，将于2017年6月毕业</p>
 				</div>
 				<div class="card">
-					<h3>Home</h3>
-					<p class="sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<p>编程语言</p>
+					<p>Java / JavaScript / HTML / CSS</p>
+					<p>前端工具：Bootstrap / jQuery</p>
 				</div>
 				<div class="card">
-					<h3>Home</h3>
-					<p class="sub-heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<p>E-mail：qinchangxi @ gmail.com</p>
+					<p>QQ：466924784</p>
 				</div>
 			</div>
 		</li>
 		<li class="fifth" id="fifth">
-			<h3>5</h3>
+			<h2 class="page-title">项目介绍</h2>
+			<hr>
 		</li>
 		<li class="eighth" id="eighth">
 			<h3>8</h3>
