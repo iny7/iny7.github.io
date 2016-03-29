@@ -87,7 +87,7 @@ body{
 	width: 95%;
 	height:95%;
 	border-radius:50%;
-	background-image:url(../images/me.jpg);
+	/* background-image:url(../images/me.jpg); */
 	background-size:cover;
 }
 .img-border{
@@ -167,4 +167,42 @@ body{
 }
 .card:nth-child(2n){
 	background: rgba(0,0,0,0.6);
+}
+/*第三页*/
+.project{
+	text-indent:2em;
+	font-size:20px;
+	color:#EEE;
+	border:2px solid red;
+	height:80%;
+}
+.project .img-box{
+	position:relative;
+	border:2px solid black;
+	overflow:hidden;
+}
+/*给翘边阴影和hover旋转*/
+.img-box img{
+	border:2px solid red;
+}
+.img-box img:nth-child(2){
+	position:absolute;
+}
+.img-box img:first-child{
+	margin-left:20%;
+}
+.img-box img:last-child{
+	top:20%;
+	left:20%;
+	position:absolute;
+}
+/*学习经历*/
+.study{
+	border:2px solid red;
+	height:80%;
+}
+/*想说的话*/
+.feeling{
+	border:2px solid red;
+	height:80%;
 }

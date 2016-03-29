@@ -6,13 +6,14 @@
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/map.css">
+	<link rel="stylesheet" href="css/boy.css">
 	<style type="text/css">
-		/* [data-map='box']{
+		[data-map='box']{
 			transform:translateY(-100%) translateX(-100%);
 		}
 		[data-map='border']{
 			transform:translateY(100%) translateX(100%);	
-		} */
+		}
 	</style>
 </head>
 <!-- 尝试开发一个可以L形状浏览的全屏页面 -->
@@ -36,7 +37,7 @@
 	</section>
 	<ul class="box" data-map="box">
 		<li class="first" id="first">
-			<div class="info">
+			<section class="info">
 			<!-- hover 换笑脸 或者html5笑脸视频?-->
 				<div class="img-box">
 					<div class="img-border"></div>
@@ -50,7 +51,7 @@
 				<p class="career">Web前端 学生</p>
 				<!--这里弄个下箭头-->
 				<button>了解我</button>
-			</div>
+			</section>
 		</li>
 		<li class="fourth" id="fourth">
 			<h2 class="page-title">个人简介</h2>
@@ -84,15 +85,34 @@
 		<li class="fifth" id="fifth">
 			<h2 class="page-title">项目介绍</h2>
 			<hr>
+			<div class="project">
+				<div class="img-box">
+					<img src="images/login.png" alt="" width="350" height="200">
+					<img src="images/edit.png" alt="" width="400" height="200">
+					<img src="images/grade.png" alt="" width="350" height="200">
+				</div>
+				<p>
+				IFUN学生信息系统
+担任J2EE方向一个7人小组的项目经理,在组员积极性普遍不高的情况下,快速完 成了系统的架构设计以及界面原型设计(Bootstrap),激发了小组成员的学习热 情。在项目中,担任主要编码工作的同时,将相对独立的模块安排给力所能及的 同学完成。相对于其他组普遍采用的方案(Struts2+Hibernate),我们组选用 了较为流行和轻量级的SpringMVC和MyBatis两大框架,大大降低了成员的学习 成本的同时也提高了系统的运行效率(存取数据的速度是其他小组的数倍)。另 外,我们在主要页面中大量使用Ajax进行前后端的数据交互,减少了用户的浏览 器刷新次数,提升了用户体验。</p>
+			</div>
 		</li>
 		<li class="eighth" id="eighth">
-			<h3>8</h3>
+			<h2 class="page-title">学习经历</h2>
+			<hr>
+			<div class="study">
+				
+			</div>
 		</li>
 		<li class="ninth" id="ninth">
-			<h3>9</h3>
+			<h2 class="page-title">想说的话</h2>
+			<hr>
+			<div class="feeling">
+				
+			</div>
 		</li>
 	</ul>
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/controller.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/boy.js"></script>
 </body>
