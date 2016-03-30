@@ -1,3 +1,7 @@
+/**
+ * 2016.3.28 iny
+ * 利用控制器控制组件以及进行各个组件之间的通信
+ */
 function Controller(arr, options){
 	
 	var map = new Map(arr, options);
@@ -57,7 +61,19 @@ function Controller(arr, options){
 		}
 	}
 
+
 	this.moveTop = function(i, j){
+
+		arr[i][j].attr('tabindex', '1');
+		arr[i][j].keydown(function(event) {
+			if(event.keyCode == 38){
+				boy.walk()
+				map.moveTop(i, j, options.animationTime)
+				flag = false;
+			}
+		});
+
+
 		arr[i][j].on('mousewheel', function(event) {
 			var x = event.originalEvent.deltaX;
 			var y = event.originalEvent.deltaY;
@@ -72,6 +88,17 @@ function Controller(arr, options){
 		})
 	}
 	this.moveBottom = function(i, j){
+
+		arr[i][j].attr('tabindex', '1');
+		arr[i][j].keydown(function(event) {
+			if(event.keyCode == 40){
+				boy.walk()
+				map.moveBottom(i, j, options.animationTime)
+
+				flag = false;
+			}
+		});
+
 		arr[i][j].on('mousewheel', function(event) {
 			var x = event.originalEvent.deltaX;
 			var y = event.originalEvent.deltaY;
@@ -88,6 +115,26 @@ function Controller(arr, options){
 	}
 
 	this.moveLeft = function(i, j){
+
+		arr[i][j].attr('tabindex', '1');
+		arr[i][j].keydown(function(event) {
+			if(event.keyCode == 37){
+				if(boy.direction === 'left'){
+					//直接移动
+					boy.walk()
+					map.moveLeft(i, j, options.animationTime)
+				}
+				//否则
+				else{
+					//男孩先转向,再移动,页面wait一个delayTime
+					boy.turnAndWalk()
+					map.moveLeft(i, j, options.animationTime, options.animationDelay)
+				}
+
+				flag = false;
+			}
+		});
+
 		arr[i][j].on('mousewheel', function(event) {
 			var x = event.originalEvent.deltaX;
 			var y = event.originalEvent.deltaY;
@@ -113,6 +160,26 @@ function Controller(arr, options){
 		})
 	}
 	this.moveRight = function(i, j){
+
+		arr[i][j].attr('tabindex', '1');
+		arr[i][j].keydown(function(event) {
+			if(event.keyCode == 39){
+				if(boy.direction === 'right'){
+					//直接移动
+					boy.walk()
+					map.moveRight(i, j, options.animationTime)
+				}
+				//否则
+				else{
+					//男孩先转向,再移动,页面wait一个delayTime
+					boy.turnAndWalk()
+					map.moveRight(i, j, options.animationTime, options.animationDelay)
+				}
+
+				flag = false;
+			}
+		});
+
 		arr[i][j].on('mousewheel', function(event) {
 			var x = event.originalEvent.deltaX;
 			var y = event.originalEvent.deltaY;
@@ -140,16 +207,4 @@ function Controller(arr, options){
 
 	this.init()
 
-	map.addEvent('vertical',function(){
-		boy.walk();
-	});
-
-	//水平移动
-	map.addEvent('horizontal',function(){
-		boy.walk();
-	});
-	//垂直移动
-	map.addEvent('stop',function(){
-		boy.stop();
-	});
 }

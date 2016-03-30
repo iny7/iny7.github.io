@@ -1,3 +1,8 @@
+/**
+ * 2016.3.28 iny
+ * 小地图里的那个小人就是它了!借用了慕课上七夕那个例子里
+ * 的动画素材,希望不会被Aaron老师打死
+ */
 function Boy(boy){
 
 	var _this = this;
@@ -17,6 +22,7 @@ function Boy(boy){
 			boy.addClass('turnLeft')
 			boy.on('animationend', function(event) {
 				boy.removeClass('turnLeft')
+				
 				boy.css('transform', 'rotateY(180deg)');
 				boy.addClass('walk');
 				//这里原先用的this,发现Controller中的方向并没有改变,原因是这里(匿名函数中)的this是boy的dom节点,而不是定义的对象,所以要在外部保存一个对this的引用
