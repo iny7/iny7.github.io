@@ -11,30 +11,20 @@
 		[data-map='box']{
 			transform:translateY(-200%) translateX(-100%);
 		}
-		[data-map='border']{
+		
+		[data-map='cell-border']{
 			transform:translateY(200%) translateX(100%);	
 		}
 	</style>
 </head>
 <!-- 尝试开发一个可以L形状浏览的全屏页面 -->
 <body>
-	<section class="map">
-		<!-- 这里找一个小人在map上走路的样子-->
-		<div class="cell-border" data-map="border">
+	<section class="map" data-map="tinyMap">
+		<div class="cell cell-border" data-map="cell-border">
 			<div class="boy" id="boy"></div>
 		</div>
-		<ol>
-			<li class="cell used"><a href="#"></a></li>
-			<li class="cell"><a href="#"></a></li>
-			<li class="cell"><a href="#"></a></li>
-			<li class="cell used"><a href="#"></a></li>
-			<li class="cell used"><a href="#"></a></li>
-			<li class="cell"><a href="#"></a></li>
-			<li class="cell"><a href="#"></a></li>
-			<li class="cell used"><a href="#"></a></li>
-			<li class="cell used"><a href="#"></a></li>
-		</ol>		
 	</section>
+	
 	<ul class="box" data-map="box">
 		<li class="first" id="first">
 			<section class="info">
@@ -104,7 +94,7 @@
 				<p>相对于其他组普遍采用的方案(Struts2+Hibernate),我们组选用了较为流行和轻量级的SpringMVC和MyBatis两大框架，大大降低了成员的学习 成本的同时也提高了系统的运行效率(存取数据的速度是其他小组的数倍)。另外，我们在主要页面中大量使用Ajax进行前后端的数据交互，减少了用户的浏览 器刷新次数，提升了用户体验。</p>
 			</div>
 		</li>
-		<li class="eighth" id="eighth">
+		<li class="eighth active" id="eighth">
 			<h2 class="page-title">做过什么</h2>
 			<hr>
 			<div class="demos">

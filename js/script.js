@@ -6,15 +6,19 @@
  */
 $(function(){
 	
+	//请根据需要自行填充一个二维数组,元素为某一个页面
 	var mapArr = [
 		[$("#first")],
 		[$("#fourth")	, $("#fifth")],
-		[,$("#eighth")	, $("#ninth")]
+		[,$("#eighth")	, $("#ninth")],
+		// [],
+		// [],
 	]
 
 	var options = {
 		'animationTime' : '2',
-		'animationDelay' : '1'
+		'animationDelay' : '1',
+		'tinyMap' : true
 	}
 
 	var ctrl = new Controller(mapArr, options);

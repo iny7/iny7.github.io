@@ -231,6 +231,7 @@ body {
 	transform-origin:50% 0;
 	transform-style:preserve-3d;
 	animation:rotate 8s linear infinite;
+	animation-play-state:paused;
 }
 .demos-box:hover{
 	animation-play-state:paused;
@@ -253,6 +254,7 @@ body {
 	box-shadow:0 0 20px #444;
 	border: 1px solid #DDD;
 	border:2px solid red;
+	/* backface-visibility:; */
 }
 .demos-box figcaption {
 	padding: 5px;
@@ -275,8 +277,6 @@ body {
 .demos-box figure:last-child{
 	transform:rotateY(240deg) translateZ(200px);
 }
-
-
 .address{
 	height: 80%;
 	box-sizing: border-box;

@@ -22,8 +22,7 @@ function Boy(boy){
 			boy.addClass('turnLeft')
 			boy.on('animationend', function(event) {
 				boy.removeClass('turnLeft')
-				
-				boy.css('transform', 'rotateY(180deg)');
+				boy.addClass('boyLeft')
 				boy.addClass('walk');
 				//这里原先用的this,发现Controller中的方向并没有改变,原因是这里(匿名函数中)的this是boy的dom节点,而不是定义的对象,所以要在外部保存一个对this的引用
 				_this.direction = 'left'
@@ -35,7 +34,7 @@ function Boy(boy){
 			boy.addClass('turnRight')
 			boy.on('animationend', function(event) {
 				boy.removeClass('turnRight')
-				boy.css('transform', '');
+				boy.removeClass('boyLeft')
 				boy.addClass('walk');
 				
 				_this.direction = 'right'

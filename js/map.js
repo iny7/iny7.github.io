@@ -9,7 +9,7 @@ function Map(arr, options){
 	var _this = this;
 
 	var box = $("[data-map='box']");
-	var border = $("[data-map='border']")
+	var border = $("[data-map='cell-border']")
 	// console.log('all '+ options.animationTime +'s '+options.animationDelay+ 's');
 	
 	//当box触发动画结束事件时,将事件传递给$(map),从而被Controller接收到
@@ -51,21 +51,29 @@ function Map(arr, options){
 		this.initTime(time);
 		box.css('transform', 'translateX(-'+j+'00%) translateY(-'+(i-1)+'00%)')
 		border.css('transform', 'translateX('+j+'00%) translateY('+(i-1)+'00%)')
+		arr[i][j].removeClass('active')
+		arr[i-1][j].addClass('active')
 	}
 	this.moveBottom = function(i, j, time){
 		this.initTime(time);
 		box.css('transform', 'translateX(-'+j+'00%) translateY(-'+(i+1)+'00%)')
 		border.css('transform', 'translateX('+j+'00%) translateY('+(i+1)+'00%)')
+		arr[i][j].removeClass('active')
+		arr[i+1][j].addClass('active')
 	}
 	this.moveLeft = function(i, j, time, delay){
 		this.initTime(time, delay);
 		box.css('transform', 'translateX(-'+(j-1)+'00%) translateY(-'+i+'00%)')
 		border.css('transform', 'translateX('+(j-1)+'00%) translateY('+i+'00%)')	
+		arr[i][j].removeClass('active')
+		arr[i][j-1].addClass('active')
 	}
 	this.moveRight = function(i, j, time, delay){
 		this.initTime(time, delay);
 		box.css('transform', 'translateX(-'+(j+1)+'00%) translateY(-'+i+'00%)')
 		border.css('transform', 'translateX('+(j+1)+'00%) translateY('+i+'00%)')			
+		arr[i][j].removeClass('active')
+		arr[i][j+1].addClass('active')
 	}
 
 }
