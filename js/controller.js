@@ -119,6 +119,16 @@ function Controller(arr, options){
 			}
 		})
 	}
+
+	var btn = $("#detail")
+	btn.on('click', function(){
+		if(flag){
+			boy.walk()
+			map.moveBottom(0, 0, options.animationTime)
+			flag = false;
+		}
+	})
+
 	this.moveBottom = function(i, j){
 
 		$(document).keydown(function(event) {

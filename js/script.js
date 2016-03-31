@@ -22,6 +22,10 @@ $(function(){
 	}
 
 	var ctrl = new Controller(mapArr, options);
-
+	var btn = $("#detail")
+	btn.on('click', function(){
+		console.log("msg")
+		ctrl.moveBottom(0,0);
+	})
 
 })
