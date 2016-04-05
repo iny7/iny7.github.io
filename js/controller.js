@@ -10,13 +10,79 @@ function Controller(arr, options){
 
 	//当一个动画正在进行的时候,不允许其他动画进行
 	var flag = true;
+	var btn = $("#detail")
+	
+	btn.on('click', function(){
+		if(flag){
+			boy.walk()
+			map.moveBottom(0, 0, options.animationTime)
+			flag = false;
+		}
+	})
+
+	var isMobile = (function(){
+		var browser = navigator.userAgent.toLowerCase();
+		console.log(browser)
+		if(/iphone/.test(browser)){
+			console.log("iphone")
+			return true;	
+		}else if(/android/.test(browser)){
+			console.log("android")
+			return true;
+		}else if(document.ontouchstart !== undefined){
+			//判断有没有触屏事件
+			return true;
+		}
+
+	})()
 
 	this.init = function(){
+		if(isMobile){
+			console.log("userAgent is Mobile")
+			this.initMobileEvent();
+		}
 		if(options.tinyMap === true){
 			
 			this.generateTinyMap();
 		}
 		this.initEvent();
+	}
+
+	this.initMobileEvent = function(){
+		var startX = 0;
+		var startY = 0;
+		var endX = 0;
+		var endY = 0;
+
+		document.addEventListener('touchstart',function(event){
+		    startX = event.touches[0].pageX;
+		    startY = event.touches[0].pageY;
+		});
+
+		document.addEventListener('touchend',function(event){
+		    endX = event.changedTouches[0].pageX;
+		    endY = event.changedTouches[0].pageY;
+
+		    var deltaX = endX - startX ;
+		    var deltaY = endY - startY ;
+		    if(Math.abs(deltaX) >= Math.abs(deltaY) ){
+		        if(deltaX >= 0 ){
+		            //right
+		        }else{
+		            //left
+		        }
+
+		    }else{//y
+		        if(deltaY >= 0 ){
+		            //down
+		            boy.walk()
+					// map.moveTop(i, j, options.animationTime)
+		        }else{
+		            //up
+		        }
+
+		    }
+		});
 	}
 
 	//生成小地图
@@ -66,6 +132,8 @@ function Controller(arr, options){
 				if(arr[i][j] === undefined){
 					continue;
 				}
+				arr[i][j].css('top', 100*i+'%');
+				arr[i][j].css('left', 100*j+'%');
 				//对于非墙元素,上面有的,让他可以向上
 				if(arr[i-1] && arr[i-1][j] != undefined){
 					// console.log(i+"-"+j+":"+arr[i][j]+"上")
@@ -90,14 +158,40 @@ function Controller(arr, options){
 		}
 	}
 
-
 	this.moveTop = function(i, j){
 
 		//下一版本,
 		//√ 1.对当前页面加active 然后为document增加事件监听
-		//2.图片压缩,当前情况实在糟糕
+		//√ 2.图片压缩,当前情况实在糟糕
 		//3.在IE8下爆炸,试着做一些兼容?渐进增强,平稳退化
 		//4.非首屏懒加载?
+
+
+		//本来的事件绑定虽然丑,但还能看得下去,增加了触摸事件以后实在是太丑陋了,亟待重构
+		var startX = 0;
+		var startY = 0;
+		var endX = 0;
+		var endY = 0;
+
+		document.addEventListener('touchstart',function(event){
+		    startX = event.touches[0].pageX;
+		    startY = event.touches[0].pageY;
+		});
+
+		document.addEventListener('touchend',function(event){
+		    endX = event.changedTouches[0].pageX;
+		    endY = event.changedTouches[0].pageY;
+		    
+		    var deltaX = endX - startX ;
+		    var deltaY = endY - startY ;
+
+		    if(flag && arr[i][j].hasClass('active') && Math.abs(deltaY) - Math.abs(deltaX) > 10 && deltaY > 0){
+		    	boy.walk()
+	    		map.moveTop(i, j, options.animationTime)
+	    		flag = false;
+		    }
+	        
+		})
 
 		$(document).keydown(function(event) {
 			if(flag && event.keyCode == 38 && arr[i][j].hasClass('active')){
@@ -111,7 +205,7 @@ function Controller(arr, options){
 		arr[i][j].on('mousewheel', function(event) {
 			var x = event.originalEvent.deltaX;
 			var y = event.originalEvent.deltaY;
-			if(flag && Math.abs(y) > Math.abs(x) && y < -10){
+			if(flag && arr[i][j].hasClass('active') && Math.abs(y) - Math.abs(x) > 10 && y < -10){
 
 				boy.walk()
 				map.moveTop(i, j, options.animationTime)
@@ -120,16 +214,30 @@ function Controller(arr, options){
 		})
 	}
 
-	var btn = $("#detail")
-	btn.on('click', function(){
-		if(flag){
-			boy.walk()
-			map.moveBottom(0, 0, options.animationTime)
-			flag = false;
-		}
-	})
-
 	this.moveBottom = function(i, j){
+		var startX = 0;
+		var startY = 0;
+		var endX = 0;
+		var endY = 0;
+
+		document.addEventListener('touchstart',function(event){
+		    startX = event.touches[0].pageX;
+		    startY = event.touches[0].pageY;
+		});
+
+		document.addEventListener('touchend',function(event){
+		    endX = event.changedTouches[0].pageX;
+		    endY = event.changedTouches[0].pageY;
+		    
+		    var deltaX = endX - startX ;
+		    var deltaY = endY - startY ;
+
+		    if(flag && arr[i][j].hasClass('active') &&  Math.abs(deltaY) - Math.abs(deltaX) > 10 && deltaY < 0){
+		    	boy.walk()
+	    		map.moveBottom(i, j, options.animationTime)
+	    		flag = false;
+		    }
+		})
 
 		$(document).keydown(function(event) {
 			if(flag && event.keyCode == 40 && arr[i][j].hasClass('active')){
@@ -151,6 +259,31 @@ function Controller(arr, options){
 	}
 
 	this.moveLeft = function(i, j){
+		var startX = 0;
+		var startY = 0;
+		var endX = 0;
+		var endY = 0;
+
+		document.addEventListener('touchstart',function(event){
+		    startX = event.touches[0].pageX;
+		    startY = event.touches[0].pageY;
+		});
+
+		document.addEventListener('touchend',function(event){
+		    endX = event.changedTouches[0].pageX;
+		    endY = event.changedTouches[0].pageY;
+		    
+		    var deltaX = endX - startX ;
+		    var deltaY = endY - startY ;
+
+
+		    if(flag && arr[i][j].hasClass('active') && Math.abs(deltaX) - Math.abs(deltaY) > 10 && deltaX > 0){
+		    	console.log("msg")
+		    	boy.walk()
+	    		map.moveLeft(i, j, options.animationTime)
+	    		flag = false;
+		    }
+		})
 
 		$(document).keydown(function(event) {
 			if(flag && event.keyCode == 37 && arr[i][j].hasClass('active')){
@@ -193,6 +326,27 @@ function Controller(arr, options){
 		})
 	}
 	this.moveRight = function(i, j){
+		var startX = 0;
+		var startY = 0;
+		var endX = 0;
+		var endY = 0;
+		document.addEventListener('touchstart',function(event){
+		    startX = event.touches[0].pageX;
+		    startY = event.touches[0].pageY;
+		});
+
+		document.addEventListener('touchend',function(event){
+		    endX = event.changedTouches[0].pageX;
+		    endY = event.changedTouches[0].pageY;
+		    
+		    var deltaX = endX - startX ;
+		    var deltaY = endY - startY ;
+		    if(flag && arr[i][j].hasClass('active') && Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0){
+		    	boy.walk()
+	    		map.moveRight(i, j, options.animationTime)
+	    		flag = false;
+		    }
+		})
 
 		$(document).keydown(function(event) {
 			if(flag && event.keyCode == 39 && arr[i][j].hasClass('active')){

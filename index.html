@@ -2,19 +2,22 @@
 <html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 	<title>秦长熙的简历</title>
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/map.css">
 	<link rel="stylesheet" href="css/boy.css">
+	<link rel="stylesheet" href="css/responsive.css">
 	<style type="text/css">
-		/* [data-map='box']{
-			transform:translateY(-200%) translateX(-100%);
+		[data-map='box']{
+			transform:translateY(-200%) translateX(-200%);
 		}
 		
 		[data-map='cell-border']{
-			transform:translateY(200%) translateX(100%);	
-		} */
+			transform:translateY(200%) translateX(200%);	
+		}
 	</style>
 </head>
 <!-- 尝试开发一个可以L形状浏览的全屏页面 -->
@@ -26,7 +29,7 @@
 	</section>
 	
 	<ul class="box" data-map="box">
-		<li class="first" id="first">
+		<li class="page-1-1" id="page-1-1">
 			<section class="info">
 			<!-- hover 换笑脸 或者html5笑脸视频?-->
 				<div class="img-box">
@@ -43,7 +46,7 @@
 				<button id="detail">了解我</button>
 			</section>
 		</li>
-		<li class="fourth" id="fourth">
+		<li class="page-2-1" id="page-2-1">
 			<h2 class="page-title">个人简介</h2>
 			<hr>
 			<div class="card-group">
@@ -72,7 +75,7 @@
 				</div>
 			</div>
 		</li>
-		<li class="fifth" id="fifth">
+		<li class="page-2-2 active" id="page-2-2">
 			<h2 class="page-title">项目经历</h2>
 			<hr>
 			<div class="project">
@@ -94,7 +97,7 @@
 				<p>相对于其他组普遍采用的方案(Struts2+Hibernate),我们组选用了较为流行和轻量级的SpringMVC和MyBatis两大框架，大大降低了成员的学习 成本的同时也提高了系统的运行效率(存取数据的速度是其他小组的数倍)。另外，我们在主要页面中大量使用Ajax进行前后端的数据交互，减少了用户的浏览 器刷新次数，提升了用户体验。</p>
 			</div>
 		</li>
-		<li class="eighth active" id="eighth">
+		<li class="page-3-2" id="page-3-2">
 			<h2 class="page-title">做过什么</h2>
 			<hr>
 			<div class="demos">
@@ -123,30 +126,28 @@
 				</div>
 			</div>
 		</li>
-		<li class="ninth" id="ninth">
+		<li class="page-3-3" id="page-3-3">
 			<h2 class="page-title">一些地址</h2>
 			<hr>
 			<div class="address">
-			<figure>
-				博客 : <a href="http://www.cnblogs.com/iny7">http://www.cnblogs.com/iny7</a>	
-			</figure>
-			<figure>
-				Github : <a href="https://github.com/iny7">https://github.com/iny7</a>
-			</figure>
-			<figure>
-				电子邮箱 : qinchangxi@gmail.com
-			</figure>
-			<figure>
-				如果您对本页代码有兴趣,请戳: https://iny7.github.com/插件地址
-			</figure>
-			<p class="thanks">感谢<a href="http://www.imooc.com"><strong>慕课网</strong>(www.imooc.com)</a>
-			和<strong>百度IFE</strong>
-			<a href="http://ife.baidu.com"></a>
-			(ife.baidu.com)提供的前端学习资源,感谢各位前辈发布的各类技术文章.</p>
-			<p class="sorry">如果页面中使用的图片存在侵权,请您联系我,我会尽快删除</p>
-			<p class="sorry">(P.S.迫于功课压力,暂时没有精力做自适应了,敬请谅解/(ㄒoㄒ)/~~,如果您有任何建议,欢迎联系我哟)</p>
-			<!-- 字体飞入 -->
+				<figure>
+					博客 : <a href="http://www.cnblogs.com/iny7">http://www.cnblogs.com/iny7</a>	
+				</figure>
+				<figure>
+					Github : <a href="https://github.com/iny7">https://github.com/iny7</a>
+				</figure>
+				<figure>
+					电子邮箱 : qinchangxi@gmail.com
+				</figure>
+				<figure>
+					如果您对本页代码有兴趣，请戳: <a href="https://github.com/iny7">https://iny7.github.com/插件地址</a>
+				</figure>
+				<p class="thanks">感谢<a href="http://www.imooc.com"><strong>慕课网</strong>(www.imooc.com)</a>和<strong>百度IFE</strong><a href="http://ife.baidu.com">(ife.baidu.com)</a>提供的前端学习资源，感谢各位前辈发布的各类技术文章。</p>
+				<p class="sorry">（如果页面中使用的图片资源存在侵权，或您有任何建议，欢迎通过各种联系方式联系我，我会尽快删除。）</p>
 			</div>
+			
+			<!-- 字体飞入 -->
+			
 		</li>
 	</ul>
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>

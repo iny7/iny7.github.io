@@ -7,7 +7,7 @@
 	bottom:35%;
 	background: url(../images/boy.png);
 	background-size: 700% 200%;
-	background-position: -200% -100%; 
+	background-position: -200% -103%; 
 	transform:rotateX(-70deg) skew(18deg);
 	transform-origin:50% 100%;
 }
@@ -15,7 +15,7 @@
 	transform: rotateX(-70deg) skew(18deg) rotateY(180deg);
 }
 .boy.walk{
-	animation: walk 1s steps(1,start) infinite backwards;
+	animation: walk 2s steps(1,start) infinite backwards;
 }
 .boy.turnLeft{
 	animation: turn 1s steps(1,start) forwards;
@@ -25,41 +25,45 @@
 }
 @-webkit-keyframes walk{
 	25%{
+		/* background-color:yellow; */
 		background-position: -400% 0;
 	}
 	50%{
-		background-position: -200% -100%; 
+		/* background-color:green; */
+		background-position: -200% -103%; 
 	}
 	75%{
-		background-position: -100% -100%;
+		/* background-color:red; */
+		background-position: -100% -103%;
 	}
 	100%{
-		background-position: 0 -100%; 
+		/* background-color:blue; */
+		background-position: 0 -103%; 
 	}
 }
 @-webkit-keyframes turn {
 	17%{
-		background-position: -600% -100%;
+		background-position: -600% -103%;
 		transform:rotateX(-70deg) skew(18deg);
 	}
 	33%{
-		background-position: -500% -100%; 
+		background-position: -500% -103%; 
 		transform:rotateX(-70deg) skew(18deg);
 	}
 	50%{
-		background-position: -400% -100%;
+		background-position: -400% -103%;
 		transform:rotateX(-70deg) skew(18deg);
 	}
 	67%{
-		background-position: -500% -100%;
+		background-position: -500% -103%;
 		transform:rotateX(-70deg) rotateY(180deg) skew(-18deg);
 	}
 	83%{
-		background-position: -600% -100%; 
+		background-position: -600% -103%; 
 		transform:rotateX(-70deg) rotateY(180deg) skew(-18deg);
 	}
 	100%{
-		background-position: -200% -100%; 
+		background-position: -200% -103%; 
 		transform:rotateX(-70deg) rotateY(180deg) skew(-18deg);
 	}
 }

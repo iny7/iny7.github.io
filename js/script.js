@@ -6,14 +6,38 @@
  */
 $(function(){
 	
+	var docEl = document.documentElement;
+	var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+	var clientWidth = docEl.clientWidth;
+	console.log(clientWidth)
+
+	docEl.style.fontSize = 20 * ( clientWidth/ 320) + 'px';
+	console.log(getComputedStyle(document.documentElement)['fontSize'])
+	// console.log(navigator)
+	// console.log(navigator.userAgent)
+	// console.log(navigator.appVersion) 
+	var recalc = function() {
+	    var clientWidth = docEl.clientWidth;
+	    docEl.style.fontSize = 20 * ( clientWidth/ 320) + 'px';
+	    console.log(docEl.style.fontSize)
+	    // document.body.style.height = clientWidth * (900 / 1440) + 'px';
+	}
+	window.addEventListener(resizeEvt, recalc, false);
+	document.addEventListener('DOMContentLoaded', recalc, false);
+
 	//请根据需要自行填充一个二维数组,元素为某一个页面
 	var mapArr = [
-		[$("#first")],
-		[$("#fourth")	, $("#fifth")],
-		[,$("#eighth")	, $("#ninth")],
+		[$("#page-1-1")],
+		[$("#page-2-1")	, $("#page-2-2")],
+		[,$("#page-3-2")	, $("#page-3-3")],
 		// [],
 		// [],
 	]
+
+	//入口前判断,如果是移动端,delay为0,不要地图
+	//给ctrl一个重置的方法,当窗口小于700的时候,
+	//改他的delay等 注意取消不需要的方法 以节约内存
+	//注意对事件平稳退化
 
 	var options = {
 		'animationTime' : '2',
@@ -21,11 +45,10 @@ $(function(){
 		'tinyMap' : true
 	}
 
+
+
 	var ctrl = new Controller(mapArr, options);
-	var btn = $("#detail")
-	btn.on('click', function(){
-		console.log("msg")
-		ctrl.moveBottom(0,0);
-	})
+
+
 
 })

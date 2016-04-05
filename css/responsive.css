@@ -1,0 +1,158 @@
+/*
+ * 2016.4.4 iny
+ * 简单的自适应,防止出现太过分的显示
+ */
+@media screen and (max-width: 700px) {
+	.map{
+		position:absolute;
+		display:flex;
+		width:3rem;
+		height:3rem;
+		background-color:#DDD;
+		right:1rem;
+		top:1rem;
+		z-index:20;
+		border-radius:5%;
+		overflow:hidden;
+		transform:none;
+		box-shadow:0 0 10px 4px #CCC;
+	}
+	.map ol{
+		display:flex;
+		flex-wrap:wrap;
+	}
+	.cell a{
+		display:block;
+		height:100%;
+		color:#666;
+	}
+	.boy{
+		transform:none;
+		/* background-position:center center; */
+		bottom:10%;
+	}
+	.boyLeft{
+		transform: rotateY(180deg);
+	}
+	@-webkit-keyframes turn {
+		17%{
+			background-position: -600% -103%;
+			transform:rotateY(0deg);
+		}
+		33%{
+			background-position: -500% -103%; 
+			transform:rotateY(0deg);
+		}
+		50%{
+			background-position: -400% -103%;
+			transform:rotateY(0deg);
+		}
+		67%{
+			background-position: -500% -103%;
+			transform:rotateY(180deg);
+		}
+		83%{
+			background-position: -600% -103%; 
+			transform:rotateY(180deg);
+		}
+		100%{
+			background-position: -200% -103%; 
+			transform:rotateY(180deg);
+		}
+	}
+	.card {
+		font-size: 14px;
+		flex:0 1 80%;
+		overflow:hidden;
+	}
+	.card:nth-child(1){
+		order:1;
+	}
+	.card:nth-child(2){
+		order:3;
+	}
+	.card:nth-child(3){
+		order:5;
+	}
+	.card:nth-child(4){
+		order:2;
+	}
+	.card:nth-child(5){
+		order:4;
+	}
+	.card:nth-child(6) {
+		order:6;
+	}
+	.card:nth-child(2n) {
+		background: rgba(0,0,0,0.6);
+	}
+	.card:nth-child(-n+3) {
+		display:flex;
+		flex:0 1 20%;
+		align-items:center;
+		justify-content:center;
+	}
+	.project {
+		font-size: 14px;
+	}
+	.demos {
+		font-size: 16px;
+		-webkit-perspective: 800px;
+	}
+	.demos-box {
+		margin:10% auto;
+		width:50%;
+		height: 35%;
+	}
+	.demos-box figure:first-child{
+		transform:rotateY(0deg) translateZ(5rem);
+	}
+	.demos-box figure:nth-child(2) {
+		transform:rotateY(120deg) translateZ(5rem);
+	}
+	.demos-box figure:last-child{
+		transform:rotateY(240deg) translateZ(5rem);
+	}
+	.address{
+		font-size:16px;
+		line-height: 22px;
+		padding: 30px;
+		padding-top:50px;
+		color: #FFF;
+		border: 1px solid #FFF;
+		background: rgba(0,0,0,0.3);
+		text-overflow: ellipsis;
+	}
+}
+/*屏幕宽度窄于650的时候,图片独占一行,用按钮点击呈现*/
+@media screen and (max-width: 650px) {
+	.project .show-box {
+		float:none;
+		/* 横向展示 */
+	}
+	.demos-box {
+		margin:10% auto;
+		width:50%;
+		height: 27%;
+	}
+	.thanks{
+		margin-top:40px;
+		font-size:14px;
+	}
+	.thanks strong{
+		letter-spacing:2px;
+		font-size: 16px;
+	}
+	.sorry{
+		font-size:14px;
+	}
+}
+/*屏幕宽度窄于400的时候,图片隐藏,用按钮点击呈现*/
+@media screen and (max-width: 400px) {
+	.project .show-box {
+		display:none;
+	}
+	.sorry{
+		display:none;
+	}
+}

@@ -1,10 +1,12 @@
 .map{
-	position:fixed;
+	/* fixed在Safari下被压在每页的蒙版层下
+	position:fixed; */
+	position:absolute;
 	display:flex;
 	width:150px;
 	height:150px;
 	background-color:#DDD;
-	right:100px;
+	right:1.5rem;
 	top:0px;
 	z-index:20;
 	box-shadow:0 0 10px 4px #CCC;
@@ -14,6 +16,11 @@
 	transform-origin:50% 100%;
 	transform:rotateX(68deg) skew(-20deg);
 	border-radius: 10px;
+}
+@media screen and (max-width: 700px) {
+	.map{
+		display:none;
+	}
 }
 .map ol{
 	display:flex;
