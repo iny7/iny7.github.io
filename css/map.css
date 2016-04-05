@@ -17,11 +17,6 @@
 	transform:rotateX(68deg) skew(-20deg);
 	border-radius: 10px;
 }
-@media screen and (max-width: 700px) {
-	.map{
-		display:none;
-	}
-}
 .map ol{
 	display:flex;
 	flex-wrap:wrap;

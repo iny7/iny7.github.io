@@ -15,7 +15,7 @@
 	transform: rotateX(-70deg) skew(18deg) rotateY(180deg);
 }
 .boy.walk{
-	animation: walk 2s steps(1,start) infinite backwards;
+	animation: walk 1s steps(1,start) infinite backwards;
 }
 .boy.turnLeft{
 	animation: turn 1s steps(1,start) forwards;

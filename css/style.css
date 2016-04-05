@@ -236,6 +236,13 @@ body {
 	transform-style:preserve-3d;
 	animation:rotate 8s linear infinite;
 }
+.demos a{
+	color: #FFF;
+}
+.demos a:hover{
+	color: #EEE;
+	text-decoration:underline;
+}
 .demos-box:hover{
 	animation-play-state:paused;
 }
