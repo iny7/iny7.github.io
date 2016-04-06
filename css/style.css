@@ -139,11 +139,9 @@ body {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-content:center;
-	/* height:70%; */
 	/* overflow:hidden; */
 }
 .card h3 {
-	/* font-size: 24px; */
 	font-weight: bold;
 }
 .card {
@@ -221,8 +219,10 @@ body {
 	color:#DDD;
 	/* border: 2px solid red; */
 	height: 80%;
-	-webkit-perspective: 800px;
-	-webkit-perspective-origin:50% -10%;
+	perspective: 800px;
+	perspective-origin:50% -10%;
+	/* -webkit-perspective: 800px; */
+	/* -webkit-perspective-origin:50% -10%; */
 }
 .demos-box {
 	position: relative;
@@ -316,6 +316,7 @@ body {
 	text-decoration:underline;
 }
 .thanks{
+	text-indent:2em;
 	margin-top:100px;
 	font-size:14px;
 }
@@ -324,9 +325,10 @@ body {
 	font-size: 16px;
 }
 .sorry{
+	text-indent:2em;
 	font-size:14px;
 }
-@-webkit-keyframes rotate {
+@keyframes rotate {
 	from { 
 		transform:rotateY(0deg);
 	}
@@ -334,3 +336,11 @@ body {
 		transform:rotateY(360deg);
 	}
 }
+/* @-webkit-keyframes rotate {
+	from { 
+		transform:rotateY(0deg);
+	}
+	to { 
+		transform:rotateY(360deg);
+	}
+} */

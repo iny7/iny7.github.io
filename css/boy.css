@@ -1,18 +1,18 @@
 .boy{
-	position: absolute;
+	/* position: absolute; */
 	z-index:10;
-	width: 60%;
-	height: 80%;
-	left:20%;
-	bottom:35%;
+	width: 70%;
+	height: 100%;
+	margin:0 auto;
 	background: url(../images/boy.png);
 	background-size: 700% 200%;
 	background-position: -200% -103%; 
-	transform:rotateX(-70deg) skew(18deg);
+	/*增加了boy-container后,下面这些3d部分就不需要boy来完成,可以使代码更清晰*/
+	/* transform:rotateX(-70deg) skew(18deg); */
 	transform-origin:50% 100%;
 }
 .boyLeft{
-	transform: rotateX(-70deg) skew(18deg) rotateY(180deg);
+	transform: rotateY(180deg);
 }
 .boy.walk{
 	animation: walk 1s steps(1,start) infinite backwards;
@@ -23,7 +23,7 @@
 .boy.turnRight{
 	animation: turn 1s steps(1,start) reverse;
 }
-@-webkit-keyframes walk{
+@keyframes walk{
 	25%{
 		/* background-color:yellow; */
 		background-position: -400% 0;
@@ -41,29 +41,29 @@
 		background-position: 0 -103%; 
 	}
 }
-@-webkit-keyframes turn {
+@keyframes turn {
 	17%{
 		background-position: -600% -103%;
-		transform:rotateX(-70deg) skew(18deg);
+		transform:rotateY(0deg);
 	}
 	33%{
 		background-position: -500% -103%; 
-		transform:rotateX(-70deg) skew(18deg);
+		transform:rotateY(0deg);
 	}
 	50%{
 		background-position: -400% -103%;
-		transform:rotateX(-70deg) skew(18deg);
+		transform:rotateY(0deg);
 	}
 	67%{
 		background-position: -500% -103%;
-		transform:rotateX(-70deg) rotateY(180deg) skew(-18deg);
+		transform:rotateY(180deg);
 	}
 	83%{
 		background-position: -600% -103%; 
-		transform:rotateX(-70deg) rotateY(180deg) skew(-18deg);
+		transform:rotateY(180deg);
 	}
 	100%{
 		background-position: -200% -103%; 
-		transform:rotateX(-70deg) rotateY(180deg) skew(-18deg);
+		transform:rotateY(180deg);
 	}
 }

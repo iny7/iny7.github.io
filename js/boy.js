@@ -18,7 +18,7 @@ function Boy(boy){
 	this.turnAndWalk = function(){
 
 		if(this.direction === 'right'){
-			console.log('now is right')
+			// console.log('now is right')
 			boy.addClass('turnLeft')
 			boy.on('animationend', function(event) {
 				boy.removeClass('turnLeft')
@@ -29,7 +29,7 @@ function Boy(boy){
 
 			});
 		}else if(this.direction === 'left'){
-			console.log('now is left')
+			// console.log('now is left')
 			// boy.css('animation', 'turn 1s steps(1,start) forwards');
 			boy.addClass('turnRight')
 			boy.on('animationend', function(event) {

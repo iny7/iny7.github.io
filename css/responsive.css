@@ -26,15 +26,10 @@
 		height:100%;
 		color:#666;
 	}
-	.boy{
+	.boy-container{
 		transform:none;
-		/* background-position:center center; */
-		bottom:10%;
 	}
-	.boyLeft{
-		transform: rotateY(180deg);
-	}
-	@-webkit-keyframes turn {
+	@keyframes turn {
 		17%{
 			background-position: -600% -103%;
 			transform:rotateY(0deg);
@@ -64,6 +59,10 @@
 		font-size: 14px;
 		flex:0 1 80%;
 		overflow:hidden;
+	}
+	.card h3{
+		display:inline-block;
+		width:2em;
 	}
 	.card:nth-child(1){
 		order:1;
@@ -97,7 +96,7 @@
 	}
 	.demos {
 		font-size: 16px;
-		-webkit-perspective: 800px;
+		perspective: 800px;
 	}
 	.demos-box {
 		margin:10% auto;
@@ -128,20 +127,36 @@
 @media screen and (max-width: 650px) {
 	.project .show-box {
 		float:none;
-		/* 横向展示 */
+	}
+	.project p{
+		font-size:14px;
+	}
+	.demos {
+		font-size: 14px;
+		perspective: 700px;
 	}
 	.demos-box {
 		margin:10% auto;
 		width:50%;
 		height: 27%;
 	}
+	.address{
+		font-size:14px;
+		line-height: 16px;
+		padding: 10px;
+		padding-top:20px;
+		color: #FFF;
+		border: 1px solid #FFF;
+		background: rgba(0,0,0,0.3);
+		text-overflow: ellipsis;
+	}
 	.thanks{
 		margin-top:40px;
-		font-size:14px;
+		font-size:12px;
 	}
 	.thanks strong{
 		letter-spacing:2px;
-		font-size: 16px;
+		font-size: 14px;
 	}
 	.sorry{
 		font-size:14px;
@@ -149,10 +164,23 @@
 }
 /*屏幕宽度窄于400的时候,图片隐藏,用按钮点击呈现*/
 @media screen and (max-width: 400px) {
+	.card h3{
+		display:inline-block;
+		font-size:12px;
+	}
+	.card p{
+		font-size:12px;
+	}
+	.project p{
+		font-size:12px;
+	}
+	.project {
+		margin:10px;
+	}
 	.project .show-box {
 		display:none;
 	}
 	.sorry{
-		display:none;
+		font-size:12px;
 	}
 }

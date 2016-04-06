@@ -12,19 +12,22 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<style type="text/css">
 		/* [data-map='box']{
-			transform:translateY(-200%) translateX(-100%);
+			transform:translateY(-200%) translateX(-200%);
 		}
 		
 		[data-map='cell-border']{
-			transform:translateY(200%) translateX(100%);	
+			transform:translateY(200%) translateX(200%);	
 		} */
 	</style>
 </head>
 <!-- 尝试开发一个可以L形状浏览的全屏页面 -->
 <body>
 	<section class="map" data-map="tinyMap">
+		<!-- 这里用了3层包装,border层负责移动(方便js控制),container层负责立起来(3d的角度),boy负责动作(走路,转身等) -->
 		<div class="cell cell-border" data-map="cell-border">
-			<div class="boy" id="boy"></div>
+			<div class="boy-container">
+				<div class="boy" id="boy"></div>
+			</div>
 		</div>
 	</section>
 	

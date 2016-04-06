@@ -10,12 +10,15 @@
 	top:0px;
 	z-index:20;
 	box-shadow:0 0 10px 4px #CCC;
-	perspective: 300px;
-	perspective-origin: 0% 100%;
+	/* perspective: 300px; */
+	/* perspective-origin: 50% 50%; */
 	transform-style:preserve-3d;
 	transform-origin:50% 100%;
-	transform:rotateX(68deg) skew(-20deg);
+	transform:rotateX(60deg) skew(-20deg);
 	border-radius: 10px;
+	padding:0;
+	margin:0;
+
 }
 .map ol{
 	display:flex;
@@ -24,6 +27,12 @@
 	height:100%;
 	background:url(../images/wall.jpeg);
 	background-size:cover;
+}
+.boy-container{
+	width:100%;
+	height:100%;
+	/* background-color: green; */
+	transform:rotateX(-90deg) translateY(-50%);
 }
 .cell{
 	border-radius: 10px;
@@ -39,7 +48,8 @@
 	z-index:9;
 	background-color:transparent;
 	box-sizing:border-box;
-	border-radius:10px;
+	border-radius:0;
+	/* background-color:red; */
 	transform-style:preserve-3d;
 }
 .cell a{
