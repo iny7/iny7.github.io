@@ -1,7 +1,7 @@
 .boy{
 	/* position: absolute; */
 	z-index:10;
-	width: 70%;
+	width: 60%;
 	height: 100%;
 	margin:0 auto;
 	background: url(../images/boy.png);

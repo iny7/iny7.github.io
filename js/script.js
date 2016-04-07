@@ -5,6 +5,12 @@
  * 最终抽象成为一个可复用的插件
  */
 $(function(){
+	// 找到适合浏览器的全屏方法  
+	
+	  
+	// 启动全屏模式  
+	
+	// launchFullScreen(document.getElementById("videoElement")); // any individual element  
 	
 	var docEl = document.documentElement;
 	var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
@@ -45,10 +51,15 @@ $(function(){
 		'tinyMap' : true
 	}
 
-
-
 	var ctrl = new Controller(mapArr, options);
-
-
+	var demos = $('#demos-box');
+	demos.on('click', function(event) {
+		console.log(demos.attr('class'));
+		if(demos.hasClass('stop')){
+			demos.removeClass('stop')
+		}else{
+			demos.addClass('stop');
+		}
+	});
 
 })

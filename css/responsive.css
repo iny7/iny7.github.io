@@ -29,6 +29,10 @@
 	.boy-container{
 		transform:none;
 	}
+	.boy{
+		height: 80%;
+		margin-top:10%;
+	}
 	@keyframes turn {
 		17%{
 			background-position: -600% -103%;

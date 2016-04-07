@@ -24,18 +24,31 @@ function Controller(arr, options){
 	var flag = true;
 	var btn = $("#detail")
 	
+	function launchFullScreen(element) {
+	    if (element.requestFullScreen) {
+	        element.requestFullScreen();
+	    } else if (element.mozRequestFullScreen) {
+	        element.mozRequestFullScreen();
+	    } else if (element.webkitRequestFullScreen) {
+	        element.webkitRequestFullScreen();
+	    }
+	}
+	$(document).on('fullScreen', function(){
+		launchFullScreen(document.documentElement); // the whole page  
+	})
 	btn.on('click', function(){
 		console.log("click")
 		if(flag){
 			boy.walk()
 			map.moveBottom(0, 0, options.animationTime)
 			flag = false;
+			launchFullScreen(document.documentElement); // the whole page  
 		}
 	})
 	//把滚轮,触屏和键盘事件条件封装成自定义事件,触发后调用者仍需判断当前位置下是否能进行移动
 	var isMobile = (function(){
 		var browser = navigator.userAgent.toLowerCase();
-		console.log(browser)
+		// console.log(browser)
 		if(/iphone/.test(browser)){
 			console.log("iphone")
 			return true;	
@@ -50,7 +63,18 @@ function Controller(arr, options){
 		}
 		return false;
 	})()
+	if(isMobile){
+		btn.trigger('click')
+	}
 
+	if(!isMobile){
+		$('#demos-box').hover(function() {
+			$(this).css('animation-play-state', 'paused');
+		}, function() {
+			$(this).css('animation-play-state', 'running');
+		});
+	}
+	
 	this.init = function(){
 		if(options.tinyMap === true){
 			this.generateTinyMap();
@@ -149,11 +173,13 @@ function Controller(arr, options){
 		var endY = 0;
 
 		document.addEventListener('touchstart',function(event){
+		    event.stopPropagation();
 		    startX = event.touches[0].pageX;
 		    startY = event.touches[0].pageY;
 		});
 
 		document.addEventListener('touchend',function(event){
+		    event.stopPropagation();
 		    endX = event.changedTouches[0].pageX;
 		    endY = event.changedTouches[0].pageY;
 
