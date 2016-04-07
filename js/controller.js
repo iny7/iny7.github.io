@@ -37,12 +37,12 @@ function Controller(arr, options){
 		launchFullScreen(document.documentElement); // the whole page  
 	})
 	btn.on('click', function(){
-		console.log("click")
 		if(flag){
 			boy.walk()
 			map.moveBottom(0, 0, options.animationTime)
 			flag = false;
-			launchFullScreen(document.documentElement); // the whole page  
+			//这玩意必须由用户行为来触发,
+			// launchFullScreen(document.documentElement); // the whole page  
 		}
 	})
 	//把滚轮,触屏和键盘事件条件封装成自定义事件,触发后调用者仍需判断当前位置下是否能进行移动
@@ -63,9 +63,6 @@ function Controller(arr, options){
 		}
 		return false;
 	})()
-	if(isMobile){
-		btn.trigger('click')
-	}
 
 	if(!isMobile){
 		$('#demos-box').hover(function() {
