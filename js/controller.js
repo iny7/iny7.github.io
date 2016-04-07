@@ -25,6 +25,7 @@ function Controller(arr, options){
 	var btn = $("#detail")
 	
 	btn.on('click', function(){
+		console.log("click")
 		if(flag){
 			boy.walk()
 			map.moveBottom(0, 0, options.animationTime)
@@ -148,13 +149,11 @@ function Controller(arr, options){
 		var endY = 0;
 
 		document.addEventListener('touchstart',function(event){
-			event.preventDefault();
 		    startX = event.touches[0].pageX;
 		    startY = event.touches[0].pageY;
 		});
 
 		document.addEventListener('touchend',function(event){
-			event.preventDefault();
 		    endX = event.changedTouches[0].pageX;
 		    endY = event.changedTouches[0].pageY;
 
@@ -321,6 +320,7 @@ function Controller(arr, options){
 	this.moveTop = function(i, j){
 
 		$(this).on('moveTop', function(event) {
+			event.preventDefault();
 
 			if(flag && arr[i][j].hasClass('active')){
 				console.log("moveTop---")
@@ -335,7 +335,7 @@ function Controller(arr, options){
 	this.moveBottom = function(i, j){
 
 		$(this).on('moveBottom', function(event) {
-			
+			event.preventDefault();
 			if(flag && arr[i][j].hasClass('active')){
 				boy.walk()
 	    		map.moveBottom(i, j, options.animationTime)
@@ -348,7 +348,7 @@ function Controller(arr, options){
 	this.moveLeft = function(i, j){
 		
 		$(this).on('moveLeft', function(event) {
-			
+			event.preventDefault();
 			if(flag && arr[i][j].hasClass('active')){
 				if(boy.direction === 'left'){
 					//直接移动
@@ -369,7 +369,7 @@ function Controller(arr, options){
 	this.moveRight = function(i, j){
 		
 		$(this).on('moveRight', function(event) {
-			
+			 event.preventDefault();
 			 if(flag && arr[i][j].hasClass('active')){
 				if(boy.direction === 'right'){
 					//直接移动
