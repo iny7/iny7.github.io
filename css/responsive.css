@@ -129,6 +129,16 @@
 }
 /*屏幕宽度窄于650的时候,图片独占一行,用按钮点击呈现*/
 @media screen and (max-width: 650px) {
+	.img-tooltip{
+		left:50%;
+		top:50%;
+		transform:translateX(-50%) translateY(-50%);
+		font-size:16px;
+		background-color:transparent;
+	}
+	.img-tooltip:before{
+		border:none;
+	}
 	.project .show-box {
 		float:none;
 	}
@@ -168,6 +178,9 @@
 }
 /*屏幕宽度窄于400的时候,图片隐藏,用按钮点击呈现*/
 @media screen and (max-width: 400px) {
+	.card-group {
+		margin:10px;
+	}	
 	.card h3{
 		display:inline-block;
 		font-size:12px;

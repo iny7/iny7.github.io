@@ -5,6 +5,7 @@
 	display:flex;
 	width:150px;
 	height:150px;
+	font-size:0;
 	background-color:#DDD;
 	right:1.5rem;
 	top:0px;
@@ -18,7 +19,6 @@
 	border-radius: 10px;
 	padding:0;
 	margin:0;
-
 }
 .map ol{
 	display:flex;

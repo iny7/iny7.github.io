@@ -1,4 +1,9 @@
-figure, ul, ol, li{
+ /* √ 1.了解我按钮的下面加个小三角箭头
+	√ 2.hover后的文字以tooptip形式出现
+	√ 3.每一页的位置由js根据Map动态生成
+	  4.更换帧动画更多的小人图片?
+ */
+html, body,figure, ul, ol, li{
 	margin: 0;
 	padding: 0;
 }
@@ -9,38 +14,67 @@ a {
 	text-decoration: none;
 }
 html, body {
-	position: absolute;
-	margin: 0;
-	padding: 0;
+	/* position: absolute; */
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 }
 body {
 	font-family: "Microsoft Yahei";
-	background: url(../images/banner.jpg) no-repeat;
+	background: url("../images/banner.jpg") no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: center center;
 }
-.box {
+#thumb{
+	/* fixed在Safari下被压在每页的蒙版层下
+	position:fixed; */
+	position:absolute;
+	font-size:25px;
+	z-index:1000;
+	color:#CCC;
+	top:15px;
+	left:15px;
+	cursor:pointer;
+}
+/* 公共样式 */
+.box,.page {
 	position: absolute;
 	display: block;
 	width: 100%;
 	height: 100%;
 }
-.box li {
-	position: absolute;
-	display: block;
-	width: 100%;
-	height: 100%;
-	min-height: 100%;
-	max-height: 200%;
+.scaleBox{
+	position:absolute;
+	height:100%;
+	width:100%;
+	transition:all 1s;
+}
+.scaleBox.active{
+	/* 这些数值由js根据当前active的page动态计算,就可以满足缩放的效果与 */
+	/* 窗口缩小到0.3倍3倍宽高就占整个页面的90,相应的如果是4行四列,就应该是0.225 */
+	transform:scale(0.3);
+	/* 5%是因为1-90%后左右各5%,95表示最右(下) */
+	transform-origin:5% 95%;
+}
+.scaleBox.active .box{
+	transform:none;
+}
+.scaleBox.active .page{
+	cursor:pointer;
+	transition:box-shadow .8s;
+}
+.scaleBox.active .page:hover{
+	box-shadow:0 0 20px 10px #CCC;
+}
+.page {
 	padding: 1rem;
 	box-sizing: border-box;
 	overflow: hidden;
+	color:#CCC;
+	font-size: 16px;
 }
-.box li:before {
+.page:before {
 	position: absolute;
 	content: '';
 	top: 0;
@@ -52,89 +86,117 @@ body {
 	z-index: -1;
 	background: #616569;
 }
-.box li:nth-child(2n+1):before {
+.page:nth-child(2n+1):before {
 	background-color: #3A495D;
-}
-/* 这部分应该由js根据Map动态生成 */
-
-.info {
-	max-width: 300px;
-	text-align: center;
-	margin: 10% auto;
-	font-size: 24px;
-	color: #CCC;
-}
-.img-box {
-	position: relative;
-	margin: 0 auto;
-	height: 10rem;
-	width: 10rem;
-	max-width:240px;
-	max-height:240px;
-}
-.img {
-	position: absolute;
-	margin: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	width: 95%;
-	height: 95%;
-	border-radius: 50%;
-	background: url(../images/me.jpg) no-repeat;
-	background-size: cover;
-}
-.img-border {
-	position: absolute;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-image: linear-gradient(to top left, #7E7E84, #000);
-	border-radius: 50%;
-	transition: all 3s linear;
-	box-shadow: 0 0 20px 2px #7E7E84,0 0 20px -2px #7E7E84;
-	box-sizing: border-box;
-}
-.img-mask {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-	top: 0;
-	z-index: 1;
-	background-color: #333;
-	transition: all 1.5s;
-	opacity: 0;
-	padding-top: 35%;
-	box-sizing: border-box;
-	color: #FFF;
-	font-size: 24px;
-}
-.img-box:hover .img-border {
-	transform: rotate(1080deg);
-}
-.img-box:hover .img-mask {
-	opacity: 0.3;
-}
-#detail{
-	border: none;
-	background: #333;
-	color: #eee;
-	font-size: 18px;
-	border-radius: 5px;
-	padding: 12px 24px;
-}
-#detail:focus{
-	outline:none;
-}
-.info .career {
-	line-height: 50px;
-	border-top: 2px solid #FFF;
 }
 .page-title {
 	font-size: 30px;
 	color: #DDD;
 	font-weight: bold;
 }
+/* 第一页 */
+.info {
+	font-size: 24px;
+	max-width: 300px;
+	text-align: center;
+	margin: 10% auto;
+}
+.img-box {
+	position: relative;
+	margin: 0 auto;
+	height: 10rem;
+	width: 10rem;
+	max-width:220px;
+	max-height:220px;
+	border-radius: 50%;
+	/* transition: all 3s linear; */
+	padding:2%;
+	background: url('../images/edit.png') no-repeat content-box,linear-gradient(to top left, #7E7E84, #000);
+	background-size: cover;
+	box-sizing: border-box;
+}
+.img-mask {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #000;
+	transition: all 1.5s;
+	opacity: 0;
+}
+.img-box:hover .img-mask {
+	opacity: 0.6;
+}
+.img-box:hover .img-tooltip {
+	opacity:1;
+}
+.img-tooltip{
+	position:absolute;
+	opacity:0;
+	top:10%;
+	right:110%;
+	width:7em;
+	height:2.5em;
+	line-height:2.5em;
+	font-size:14px;
+	padding:.5em 1em;
+	background-color:#666;
+	border-radius:10px;
+	transition:all 1s linear;
+}
+.img-tooltip:before{
+	position:absolute;
+	content:'';
+	width:0;
+	height:0;
+	bottom:30%;
+	left:100%;
+	color:#333;
+	border:10px solid transparent;
+	border-left:10px solid #666;
+}
+#process{
+	position:relative;
+	height:2px;
+	background-color:#000;
+	width:100%;
+}
+#process:before{
+	position:absolute;
+	content:'';
+	top:0;
+	left:0;
+	border:1px solid #CCC;
+	width:30%;
+	max-width:100%;
+}
+#detail{
+	position:relative;
+	border: none;
+	background: #333;
+	color: #eee;
+	font-size: 18px;
+	cursor:pointer;
+	border-radius: 5px;
+	padding: 12px 24px;
+}
+#detail:before{
+	position:absolute;
+	content:'';
+	/* background-color:red; */
+	width:0;
+	height:0;
+	left:50%;
+	top:100%;
+	margin-left:-12px;
+	border:12px solid transparent;
+	border-top:12px solid #333;
+}
+#detail:focus{
+	outline:none;
+}
+/* 第二页 */
 .card-group {
+	margin:40px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -148,7 +210,7 @@ body {
 	box-sizing: border-box;
 	padding: 2px;
 	text-align: center;
-	font-size: 16px;
+	
 	flex:0 1 33%;
 	color: #FFF;
 	background: rgba(0,0,0,0.3);
@@ -344,4 +406,4 @@ body {
 	to { 
 		transform:rotateY(360deg);
 	}
-} */
+}

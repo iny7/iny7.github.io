@@ -9,13 +9,14 @@
 	<link rel="stylesheet" href="css/map.css">
 	<link rel="stylesheet" href="css/boy.css">
 	<link rel="stylesheet" href="css/responsive.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<style type="text/css">
 		/* [data-map='box']{
-			transform:translateY(-200%) translateX(-100%);
+			transform:translateY(-100%) translateX(-00%);
 		}
 		
 		[data-map='cell-border']{
-			transform:translateY(200%) translateX(100%);	
+			transform:translateY(100%) translateX(00%);	
 		} */
 	</style>
 </head>
@@ -29,29 +30,28 @@
 			</div>
 		</div>
 	</section>
-	
+	<span class="fa fa-th" id="thumb"></span>
+	<!-- 缩略视图的动画还是像小地图一样的道理box负责移动动画,watch负责缩略动画(当做是一个视窗),这样不需要改原先的代码,就算是有3D的需求,也可以用watch的伪选择器n-th-child应付给出不同的旋转角来解决-->
+	<div id="scaleBox" class="scaleBox">
 	<ul class="box" data-map="box">
-		<li class="page-1-1 active" id="page-1-1">
+		<li class="page active" id="page-1-1">
 			<section class="info">
 			<!-- hover 换笑脸 或者html5笑脸视频?-->
 				<div class="img-box">
-					<div class="img-border"></div>
-					<div class="img-mask">
-						<!-- 这里用气泡弹出-->
-						<p>谢谢您的到访!</p>
-					</div>
-					<div class="img"></div>
+					<div class="img-mask"></div>
+					<div class="img-tooltip">谢谢您的到访!</div>
 				</div>
 				<p>秦长熙</p>
-				<p class="career">Web前端 学生</p>
-				<!--这里弄个下箭头-->
+				<div id="process"></div>
+				<p>Web前端 学生</p>
+				<!-- 这里弄一个进度条,页面懒加载的同时跑进度条,进度条结束以后这个button才由下向上透明渐入 -->
 				<button id="detail">了解我</button>
 			</section>
 		</li>
-		<li class="page-2-1" id="page-2-1">
+		<li class="page" id="page-2-1">
 			<h2 class="page-title">个人简介</h2>
 			<hr>
-			<div class="card-group">
+			<section class="card-group">
 				<div class="card">
 					<h3>基本信息</h3>
 				</div>
@@ -75,12 +75,12 @@
 					<p>E-mail：qinchangxi @ gmail.com</p>
 					<p>QQ：466924784</p>
 				</div>
-			</div>
+			</section>
 		</li>
-		<li class="page-2-2" id="page-2-2">
+		<li class="page" id="page-2-2">
 			<h2 class="page-title">项目经历</h2>
 			<hr>
-			<div class="project">
+			<section class="project">
 				<div class="show-box">
 					<figure>
 						<img src="images/login.png" alt="登陆界面" height="100%" width="100%">>
@@ -97,12 +97,12 @@
 				<p>担任7人小组项目经理</p>
 				<p>在组员积极性普遍不高的情况下，快速完成了界面原型设计(Bootstrap)，激发了小组成员的学习热情。在项目中，担任主要编码工作并将相对独立的模块安排给力所能及的同学完成。</p>
 				<p>相对于其他组普遍采用的方案(Struts2+Hibernate),我们组选用了较为流行和轻量级的SpringMVC和MyBatis两大框架，大大降低了成员的学习 成本的同时也提高了系统的运行效率(存取数据的速度是其他小组的数倍)。另外，我们在主要页面中大量使用Ajax进行前后端的数据交互，减少了用户的浏览 器刷新次数，提升了用户体验。</p>
-			</div>
+			</section>
 		</li>
-		<li class="page-3-2" id="page-3-2">
+		<li class="page" id="page-3-2">
 			<h2 class="page-title">做过什么</h2>
 			<hr>
-			<div class="demos">
+			<section class="demos">
 				<!-- 这里用3d旋转展示，然后点击跳转项目演示页面-->
 				<div class="demos-box" id="demos-box">
 					<figure>
@@ -125,12 +125,12 @@
 						</figcaption>
 					</figure>
 				</div>
-			</div>
+			</section>
 		</li>
-		<li class="page-3-3" id="page-3-3">
+		<li class="page" id="page-3-3">
 			<h2 class="page-title">一些地址</h2>
 			<hr>
-			<div class="address">
+			<section class="address">
 				<figure>
 					博客 : <a href="http://www.cnblogs.com/iny7">http://www.cnblogs.com/iny7</a>	
 				</figure>
@@ -145,16 +145,15 @@
 				</figure>
 				<p class="thanks">感谢<a href="http://www.imooc.com"><strong>慕课网</strong>(www.imooc.com)</a>和<strong>百度IFE</strong><a href="http://ife.baidu.com">(ife.baidu.com)</a>提供的前端学习资源，感谢各位前辈发布的各类技术文章。</p>
 				<p class="sorry">（如果页面中使用的图片资源存在侵权，或您有任何建议，欢迎通过各种联系方式联系我，我会尽快删除。）</p>
-			</div>
-			
+			</section>
 			<!-- 字体飞入 -->
-			
 		</li>
 	</ul>
+	</div>
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-	<script src="js/controller.js"></script>
-	<script src="js/script.js"></script>
+	<script src="js/seven.js"></script>
 	<script src="js/map.js"></script>
 	<script src="js/boy.js"></script>
+	<script src="js/script.js"></script>
 </body>
 </html>
