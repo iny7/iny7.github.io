@@ -15,6 +15,10 @@ function Boy(boy){
 		boy.addClass('walk');
 	}
 
+	this.stop = function(){
+		boy.removeClass('walk')
+	}
+
 	this.turnAndWalk = function(){
 
 		if(this.direction === 'right'){
@@ -41,10 +45,6 @@ function Boy(boy){
 			});
 		}
 		
-	}
-
-	this.stop = function(){
-		boy.removeClass('walk')
 	}
 
 	//此函数纯属娱乐

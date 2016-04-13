@@ -1,34 +1,88 @@
+/*源码阅读计划 
+	1.on()  trigger()
+	2.get()
+	3.css()
+	4.type()
+	5.addClass()
+*/
+/* 笔记: 
+	1.ES5 中 Array.isArray判断是否是数组
+	2.由jquery对象转换为原始对象的函数 get()不传参数(传参数就变成遍历)
+*/
+
 /**
  * 2016.4.9 iny
  * 不能再漫无目的地写代码了,要把可以复用的部分总结起来
  */
 (function($){
-	var myFunc = function(elem){
-		console.log(this)
-		console.log(elem.trigger)
+
+	$.fn.seven = function(options){
+		var me = this;
+		return new myFunc(me, options);
+	};
+
+	var myFunc = function(elem, options){
+		
+		this.elem = elem;
 		this.init(elem);
-		// 返回myFunc对象没用啊!要返回this.elem
+		
+		//如果是数组,为该数组添加宽高属性
+		if(Array.isArray(this.elem.get())){
+			var arr = this.elem.get();
+
+			var arrWidth = 0;
+			var arrHeight = arr.length;
+
+			var arrLength = arr.length;
+			for(var i = 0 ; i < arrLength ; i ++){
+				for(var j = 0 ; j < arr[i].length ; j ++){
+					arrWidth = arrWidth > arr[i].length ? maxLength : arr[i].length;
+					// if(arr[i-1] && arr[i-1][j] != undefined){
+					// 	console.log("上面有")
+					// 	// arr[i][j].data('canMoveTop', true);
+					// 	this.moveTo(desNode, arr[i-1][j])
+					// 	// this.moveTop(i, j)
+					// }
+					// //下面有
+					// if(arr[i+1] && arr[i+1][j] != undefined){
+					// 	console.log("下面有")
+					// 	// arr[i][j].data('canMoveDown', true);
+					// 	this.moveTo(desNode, arr[i+1][j])
+					// 	// this.moveBottom(i, j)
+					// }
+					// //左边有
+					// if(arr[j-1] && arr[i][j-1] != undefined){
+					// 	console.log("左边有")
+					// 	// arr[i][j].data('canMoveLeft', true);
+					// 	this.moveTo(desNode, arr[i][j-1])
+					// 	// this.moveLeft(i, j)
+					// }
+					// //右边有
+					// if(arr[j+1] && arr[i][j+1] != undefined && !arr[i][j+1].hasFind){
+					// 	console.log("右边有")
+					// 	// arr[i][j].data('canMoveRight',true);
+					// 	this.moveTo(desNode, arr[i][j+1])
+					// 	// this.moveRight(i, j)
+					// }
+				}
+			}
+			this.elem.arrMaxLength = arrWidth > arrHeight ? arrWidth : arrHeight;
+			this.elem.arrWidth = arrWidth;
+			this.elem.arrHeight = arrHeight;
+
+		}
+		return this.elem;
+		
 	}
 
+	//方法库
 	myFunc.prototype = {
-		isMobile : (function(){
-			var browser = navigator.userAgent.toLowerCase();
-				// console.log(browser)
-				if(/iphone/.test(browser)){
-					console.log("iphone")
-					return true;	
-				}else if(/android/.test(browser)){
-					console.log("android")
-					return true;
-				}else 
-					return false;
-		})(),
 		
-		init : function(elem){
+		'init' : function(elem){
 			this.initEvent(elem);
 		},
 		//添加事件
-		addEvent : (function(){
+		'addEvent' : (function(){
 	    	//对事件对象进行包装
 	    	var packEvent = function(event){
 	    		var type = event.type;
@@ -64,9 +118,9 @@
 					
 	            	if(Math.abs(deltaX) - Math.abs(deltaY) > 10){
 				    	if(deltaX > 5){
-				    		event.direction = 'left';
-				    	}else if(deltaX < -5){
 				    		event.direction = 'right';
+				    	}else if(deltaX < -5){
+				    		event.direction = 'left';
 				    	}
 				    }else if(Math.abs(deltaY) - Math.abs(deltaX) > 10){
 				    	if(deltaY > 5){
@@ -111,15 +165,15 @@
 	    
 	    //与其使用浏览器嗅探,还不如直接对象检测
 		//判断有没有触屏事件
-	    hasTouchEvent : (function(){
-	    	if(document.ontouchstart){
+	    'hasTouchEvent' : (function(){
+	    	if(document.ontouchstart !== undefined){
 	    		return true;
 	    	}
 	    	return false;
 	    })(),
 
 	    //初始化事件
-	    initEvent : function(elem){
+	    'initEvent' : function(elem){
 	    	this.remFont()
 	    	if(this.hasTouchEvent){
 	    		this.initTouchEvent(elem);
@@ -129,7 +183,7 @@
 	    },
 
 	    //触摸事件
-	    initTouchEvent : function(){
+	    'initTouchEvent' : function(){
 	    	var _this = this.elem;
 
 	    	var startX = 0;
@@ -153,29 +207,29 @@
 	    	    //这里判断与event相关的条件能否满足,调用者自身再判断当前状态下能否移动(flag和是否active)
 	    	    if(Math.abs(deltaX) - Math.abs(deltaY) > 10){
 	    	    	if(deltaX > 5){
-	    	    		//向右划,向左移动
+	    	    		//向右划,左移动事件
+	    	    		console.log("left")
 	    	    		$(_this).trigger('leftEvent')
-	    	    		// console.log("left")
 	    	    	}else if(deltaX < -5){
-	    	    		//向左划,向右移动
+	    	    		//向左划,右移动事件
+	    	    		console.log("right")
 	    	    		$(_this).trigger('rightEvent')
-	    	    		// console.log("right")
 	    	    	}
 	    	    }else if(Math.abs(deltaY) - Math.abs(deltaX) > 10){
 	    	    	if(deltaY > 5){
 	    	    		//向下划,向上移动
 	    	    		$(_this).trigger('topEvent')
-	    	    		// console.log("top")
+	    	    		console.log("top")
 	    	    	}else if(deltaY < -5){
 	    	    		//向上划,向下移动
 	    	    		$(_this).trigger('downEvent')
-	    	    		// console.log("bottom")
+	    	    		console.log("bottom")
 	    	    	}
 	    	    }
 	    	});
 	    },
 	    //键盘事件
-	    initKeyBoardEvnet : function(){
+	    'initKeyBoardEvnet' : function(){
 	    	var _this = this.elem;
 	    	$(document).keydown(function(event) {
 	    		event.preventDefault();
@@ -199,12 +253,10 @@
 	    	});
 	    },
 	    //鼠标滚轮事件
-	    initMouseWheelEvent : function(elem){
-
+	    'initMouseWheelEvent' : function(elem){
 	    	//使用自定义的事件处理函数,好兼容ff的鼠标滚轮事件
 	    	this.addEvent(document, 'mousewheel', function(event){
 	    		event.preventDefault();
-	    		
 	    		var direction = event.direction;
 	    		switch(direction){
 	    			case 'top':
@@ -230,7 +282,7 @@
 	    	});
 	    },
 
-	    remFont : function(){
+	    'remFont' : function(){
 	    	var docEl = document.documentElement;
 	    	var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
 	    	var clientWidth = docEl.clientWidth;
@@ -245,7 +297,7 @@
 	    	document.addEventListener('DOMContentLoaded', recalc, false);
 	    },
 
-	    fullScreen : function(){
+	    'fullScreen' : function(){
 	    	// 找到适合浏览器的全屏方法
 	    	function launchFullScreen(element) {
 	    	    if (element.requestFullScreen) {
@@ -262,13 +314,25 @@
 	    }
 	}
 
-	$.fn.seven = function(options){
-		var me = this;
-		var ctrl = new myFunc(me)
-		return this;
-	};
+	//函数库
+	$.seven = {
+		'isMobile' : (function(){
+			var browser = navigator.userAgent.toLowerCase();
+			// console.log(browser)
+			if(/iphone/.test(browser)){
+				console.log("iphone")
+				return true;	
+			}else if(/android/.test(browser)){
+				console.log("android")
+				return true;
+			}else 
+				return false;
+		})()
+	}
 
 })(jQuery)
+
+
 		// this.each(function() {
 		// 	var me = $(this)
 		// 	var instance = me.data('seven')

@@ -1,10 +1,11 @@
 .boy{
 	/* position: absolute; */
 	z-index:10;
-	width: 60%;
+	/* 这里一定要用100%,原因是小地图每一个格子的宽高都已经用js做了近似计算,避免了像素为小数带来的浏览器绘制误差,如果这里用80%,就又出现了小数,导致背景图绘制出现误差,如果要对boy做缩放,给父盒子transform */
+	width: 100%;
 	height: 100%;
 	margin:0 auto;
-	background: url(../images/boy.png);
+	background: url("../images/boy.png");
 	background-size: 700% 200%;
 	background-position: -200% -103%; 
 	/*增加了boy-container后,下面这些3d部分就不需要boy来完成,可以使代码更清晰*/
@@ -31,10 +32,11 @@
 	50%{
 		/* background-color:green; */
 		background-position: -200% -103%; 
+		
 	}
 	75%{
-		/* background-color:red; */
 		background-position: -100% -103%;
+		/* background-color:red; */
 	}
 	100%{
 		/* background-color:blue; */

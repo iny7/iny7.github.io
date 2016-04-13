@@ -4,18 +4,12 @@
  */
 @media screen and (max-width: 700px) {
 	.map{
-		position:absolute;
-		display:flex;
-		width:3rem;
-		height:3rem;
 		background-color:#DDD;
 		right:1rem;
 		top:1rem;
-		z-index:20;
-		border-radius:5%;
 		overflow:hidden;
 		transform:none;
-		box-shadow:0 0 10px 4px #CCC;
+		border-radius:5%;
 	}
 	.map ol{
 		display:flex;
@@ -27,36 +21,21 @@
 		color:#666;
 	}
 	.boy-container{
-		transform:none;
+		transform:scale(0.8,0.9);
 	}
-	.boy{
-		height: 80%;
-		margin-top:10%;
-	}
-	@keyframes turn {
-		17%{
-			background-position: -600% -103%;
-			transform:rotateY(0deg);
-		}
-		33%{
-			background-position: -500% -103%; 
-			transform:rotateY(0deg);
+	@keyframes walk{
+		25%{
+			/* 对非3D显示下的男孩位置进行微调 */
+			background-position: -401% 0;
 		}
 		50%{
-			background-position: -400% -103%;
-			transform:rotateY(0deg);
+			background-position: -200% -103%; 
 		}
-		67%{
-			background-position: -500% -103%;
-			transform:rotateY(180deg);
-		}
-		83%{
-			background-position: -600% -103%; 
-			transform:rotateY(180deg);
+		75%{
+			background-position: -100% -103%;
 		}
 		100%{
-			background-position: -200% -103%; 
-			transform:rotateY(180deg);
+			background-position: 0 -103%; 
 		}
 	}
 	.card {
@@ -138,6 +117,9 @@
 	}
 	.img-tooltip:before{
 		border:none;
+	}
+	.project {
+		margin:20px;
 	}
 	.project .show-box {
 		float:none;

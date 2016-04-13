@@ -1,3 +1,7 @@
+// bill应用里的数据这里也能访问到,说明localStorage是所有页面共享的,更要注意防止命名冲突
+// console.log(localStorage.bill)
+
+
 /*
  * 2016.3.24 iny
  * 目的:利用一个二维数组做简单的地图,地图和网页同步变化,并且
@@ -6,12 +10,13 @@
  */
 $(function(){
 	//请根据需要自行填充一个二维数组,元素为某一个页面
+
 	var arr = [
 		[$("#page-1-1")],
 		[$("#page-2-1")	, $("#page-2-2")],
 		[,$("#page-3-2")	, $("#page-3-3")],
-		// [],
-		// [],
+		[],
+		[],
 	]
 
 	//入口前判断,如果是移动端,delay为0,不要地图
@@ -35,6 +40,7 @@ $(function(){
 	
 	//Map是内建的对象!注意命名!
 	var page = new myApp.Page(arr, options)
+	window.page = page;
 	$(page).seven();
 	// $(page).seven();
 	
@@ -49,37 +55,17 @@ $(function(){
 
 	$(page).on('downEvent', function(event) {
 		event.preventDefault();
-    	page.moveDown()
+		page.moveDown()
 	});
 
 	$(page).on('leftEvent', function(event) {
 		event.preventDefault();
-		page.moveRight();
-	});
-
-	$(page).on('rightEvent', function(event) {
-		event.preventDefault();
 		page.moveLeft();
 	});
 
-
-	var btn = $("#detail")
-	btn.on('click', function(){
-		if(flag){
-			map.moveBottom(0, 0)
-			flag = false;
-			//这玩意必须由用户行为来触发,
-			// launchFullScreen(document.documentElement); // the whole page  
-		}
-	})
-	var demos = $('#demos-box');
-	demos.on('click', function(event) {
-		console.log(demos.attr('class'));
-		if(demos.hasClass('stop')){
-			demos.removeClass('stop')
-		}else{
-			demos.addClass('stop');
-		}
+	$(page).on('rightEvent', function(event) {
+		page.moveRight();
+		event.preventDefault();
 	});
 
 })

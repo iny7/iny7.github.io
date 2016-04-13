@@ -3,6 +3,11 @@
 	√ 3.每一页的位置由js根据Map动态生成
 	  4.更换帧动画更多的小人图片?
  */
+ /* #scaleBox.active .page.active{}
+    #scaleBox .page.active{}
+	第二行比第一行快很多,猜想与渲染原理有关,一直也不
+	知道css的效率,等有网络了好好查查
+  */
 html, body,figure, ul, ol, li{
 	margin: 0;
 	padding: 0;
@@ -32,7 +37,7 @@ body {
 	position:absolute;
 	font-size:25px;
 	z-index:1000;
-	color:#CCC;
+	color:#444;
 	top:15px;
 	left:15px;
 	cursor:pointer;
@@ -48,24 +53,31 @@ body {
 	position:absolute;
 	height:100%;
 	width:100%;
-	transition:all 1s;
+	transition:transform 1s ease-out;
 }
-.scaleBox.active{
+/* .scaleBox.active{ */
 	/* 这些数值由js根据当前active的page动态计算,就可以满足缩放的效果与 */
 	/* 窗口缩小到0.3倍3倍宽高就占整个页面的90,相应的如果是4行四列,就应该是0.225 */
-	transform:scale(0.3);
 	/* 5%是因为1-90%后左右各5%,95表示最右(下) */
-	transform-origin:5% 95%;
-}
-.scaleBox.active .box{
-	transform:none;
-}
-.scaleBox.active .page{
+	/* transform:scale(0.3, 0.18); */
+	/* transform-origin:5% 5%; */
+/* } */
+#scaleBox.active .page{
 	cursor:pointer;
-	transition:box-shadow .8s;
+	/* 缩略图下给boxshadow加过渡效果会导致页面重绘,效率很低 */
+	/* transition:box-shadow 1s ease-out; */
 }
-.scaleBox.active .page:hover{
+#scaleBox.active .page:hover{
 	box-shadow:0 0 20px 10px #CCC;
+}
+/*排除法得出这一行是导致缩放卡顿的罪魁祸首*/
+#scaleBox.active .page.active{
+
+	/* 1.#scaleBox比#scaleBox.active快(这个是必然的,后者二次查找) */
+	/* 2.无论在js还是css里,这个样式的添加都会卡*/
+	/* 3.测试发现border会快很多,应该是boxshadow在transform的过程中不断重绘导致的 */
+	/* 去掉第一个.active后会好很多干脆在js里改样式?还方便 */
+	
 }
 .page {
 	padding: 1rem;
@@ -157,17 +169,28 @@ body {
 #process{
 	position:relative;
 	height:2px;
-	background-color:#000;
 	width:100%;
 }
+/* 这里没用背景图上已完成覆盖所有,是因为当屏幕缩放小到一定程度的时候浏览器存在渲染问题,使得两种颜色混合 */
 #process:before{
 	position:absolute;
 	content:'';
 	top:0;
 	left:0;
-	border:1px solid #CCC;
 	width:30%;
 	max-width:100%;
+	height:100%;
+	background-color:#CCC;
+}
+#process:after{
+	position:absolute;
+	content:'';
+	top:0;
+	right:0;
+	width:70%;
+	max-width:100%;
+	height:100%;
+	background-color:#000;
 }
 #detail{
 	position:relative;
