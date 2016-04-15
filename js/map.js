@@ -1,3 +1,13 @@
+// 给小地图加个可拖拽吧(绕中轴小角度旋转)
+			// 每次加载页面小地图淡入? 百叶窗?
+			// 未开发的页面可以写个 "这里留着写在您公司的实习经历"
+			// 活泼一波,把喜欢的嗷大喵加上去好不好??
+			// 小地图不是有两个终点吗? 一个用来介绍这个插件 一个用来写上面那行,另外,第二页技能介绍要按照招聘那些来写,不能太笼统
+			// 这个页面也要加点本地存储的东西吧??(图片,脚本)
+			// map可以做成个UI组件,参考一下touch.js的套路,精心准备一个demo演示页面,作为我的第一个框架(seven.js数组那一块应该放到map组件里面的)
+			// map才是工作的核心,应该叫seven.js 展示页面的小地图应该画一个大大的7,哈哈哈哈哈 好玩
+
+			//seven.js里提供上下左右和moveto,thumb等接口,展示页可以写,如果您想方便,请使用我简单封装的事件(上下左右)
 /**
  * 2016.3.28 iny
  * 这个对象是整个网页的地形以及小地图的抽象表示(入参为存放dom的二维数组以及配置参数
@@ -67,16 +77,18 @@
 			arr2[i] = [];
 			for(var j = 0 ; j < arr[i].length ; j ++){
 				//判断是不是jquery对象
-				if(arr[i][j] instanceof jQuery && arr[i][j].hasClass('page')){
+				// if(arr[i][j] instanceof jQuery && arr[i][j].hasClass('page')){
+
+				// 这里因为要测试寻路,就先去掉page的要求了(能不能对非page页面增加类似该页无法显示的html代码呢?)
+				if(arr[i][j] instanceof jQuery){
 					arr2[i][j] = arr[i][j];
 				}
 			}
 			arrWidth = arrWidth > arr2[i].length ? arrWidth : arr2[i].length;
 		}
 		this.arrHeight = arrHeight;
-		console.log(this.arrHeight)
 		this.arrWidth = arrWidth;
-		console.log(this.arrWidth)
+		console.log('生成数组的实际宽高为:'+arrWidth+'×'+arrHeight);
 	}
 	/*初始化元素位置和属性*/
 	Page.prototype.initProperty = function(){
@@ -89,6 +101,7 @@
 		this.perY = proportion / (this.arrHeight - 1);
 		this.orign = (100 - proportion * 100) / 2;
 		var arr = this.arr;
+
 		for(var i = 0 ; i < this.arrHeight ; i ++){
 			for(var j = 0 ; j < this.arrWidth ; j ++){
 				//首先筛选出不是墙的元素
@@ -100,17 +113,19 @@
 				*/
 				arr[i][j].data('i', i);
 				arr[i][j].data('j', j);
+				//$('')没有dom元素支撑,不能绑定data,为了测试寻路算法,这里对没用的地图使用了$('<a></a>')
+				// console.log(arr[i][j].data('i')+','+arr[i][j].data('j'))
+
 				arr[i][j].css('top', 100*i+'%');
 				arr[i][j].css('left', 100*j+'%');
 
-				(function(){
-					arr[i][j].on('click', function(event) {
-						event.preventDefault();
-						if(_this.scaleBox.hasClass('active')){
-							_this.moveTo($(this))
-						}
-					});	
-				})()
+				arr[i][j].on('click', function(event) {
+					event.preventDefault();
+					if(_this.scaleBox.hasClass('active')){
+						//或者给boy来个物理运动?比如弹射起步什么的(boy tooltip一个起飞,然后瞬间起飞 好玩)
+						_this.moveTo($(this))
+					}
+				});	
 				var siblings = [];
 				//对于非墙元素,上面有的,让他可以向上
 				if(arr[i-1] && arr[i-1][j] != undefined){
@@ -231,6 +246,7 @@
 					(function(i, j){
 						temp.on('click', function(event) {
 							event.preventDefault();
+							console.log(i+','+j)
 							_this.moveTo(arr[i][j])
 						});	
 					})(i, j)
@@ -428,14 +444,11 @@
 		}
 	}
 
-	function F(desNode, orignNode){
-		return G(desNode, orignNode) + H(desNode, orignNode);
+	function F(orignNode, desNode){
+		return path.length + H(desNode, orignNode);
 	}
-	function G(desNode, orignNode){
-		//计算路径的权重 惯例:直10 斜14 这里因为我没用斜,所以直接用1即可
-		return 1;
-	};
-	function H(desNode, orignNode){
+
+	function H(orignNode, desNode){
 		var ox = orignNode.data('i');
 		var oy = orignNode.data('j');	
 		var dx = desNode.data('i');
@@ -444,11 +457,18 @@
 		return h;
 	}
 
-	/* A*寻路(曼哈顿) */
-	Page.prototype.getPath = function(desNode, orignNode){
-		if(!this.path){
-			this.path = [];
+	function sortByF(a, b){
+		return b.f - a.f;
+	}
+
+	var path;
+	function find(orignNode, desNode){
+
+		if(!path){
+			console.log("初始化路径")
+			path = [orignNode];
 		}
+
 		var arr = this.arr;
 		var i = orignNode.data('i');
 		var j = orignNode.data('j');	
@@ -460,39 +480,73 @@
 		console.log('目标节点'+dx+','+dy)
 		if(i == dx && j == dy){
 			console.log('到达节点'+desNode.data('i')+','+desNode.data('j'))
-			console.log("=============寻路结束=================")
-			var path = this.path
-			delete this.path;
 			return path;
 		}
-		
-		var bestNode;
 		var min = 0;
-		var temp;
+		
 		//√ 应该在初始化时把兄弟节点保存到本节点的属性中,就不用这么麻烦地取了(如 if(node.left) arr.push(node.left))
 		//js对象是引用传递的,这样删除会直接改变原数组,明显是不期望的,简单的解决办法 arr2 = arr1.slice(0) 或 arr2 = arr1.concat()!
 		var neighbours = orignNode.data('neighbourNode').concat();
 		console.log('当前节点共有兄弟节点:'+neighbours.length+'个')
+
+		// 查找节点之前应该先根据F=G+H对该节点的兄弟数组进行排序,然后根据F从小到大去寻路,可以提高效率
+		for(var index = 0 ; index < neighbours.length ; index ++){
+			var node = neighbours[index];
+			node.f = F(node, desNode);
+			console.log('对于节点'+node.data('i')+','+node.data('j')+'曼哈顿估测寻路路径长度为'+node.f)
+		}
+
+		neighbours.sort(sortByF);
+
+		var temp;
 		while(temp = neighbours.pop()){
 			console.log('对于某一兄弟节点:'+temp.data('i')+','+temp.data('j'))
-			var f = F(desNode, temp)
-			console.log('曼哈顿估测寻路路径长度为'+f)
-			if(f == 1){
-				bestNode = temp;
-				break;
+			
+			
+			//这样不能判断一个对象是否等于数组中的某个对象(在内存中的地址不同),还是要遍历一下
+			// console.log(temp in this.path)
+			console.log('当前路径为')
+			var flag = false;
+			for (var ii = 0; ii < path.length; ii++) {
+				console.log(path[ii].data('i')+','+path[ii].data('j'))
+				//如果已经存在在路径里
+				if(temp == path[ii]){
+					flag = true;
+					break;
+				}
 			}
-			if(min == 0 || f < min){
-				min = f;
-				bestNode = temp;
+			if(flag){
+				console.log("该节点在当前路径已经出现了,这条路走不通")
+				// path = store;
+			}else{
+				path.push(temp)
+				console.log("该节点不在路径内,尝试寻路")
+				if(find(temp, desNode) !== false){
+					console.log("通过"+temp.data('i')+","+temp.data('j')+"找到了目标节点")
+					
+					return path;
+				}else{
+					console.log("未能通过"+temp.data('i')+","+temp.data('j')+"找到目标节点")
+					// console.log("返回尝试前的原点"+store[store.length-1].data('i')+','+store[store.length-1].data('j'))
+					path.pop();
+				}
 			}
 		}
-		this.path.push(bestNode)
-		console.log('所选择的最优兄弟节点为:'+bestNode.data('i')+','+bestNode.data('j'))
+		console.log("=============寻路结束=================");
+		return false;
+	}
+
+	/* A*寻路(曼哈顿) */
+	Page.prototype.getPath = function(orignNode, desNode){
+		
+		// 从点 1,1  到点 1,3   过兄弟节点2,1 和1,0的距离都为3,然而1,0是已经遍历的节点,应该加入封闭空间
+		// console.log('所选择的最优兄弟节点为:'+bestNode.data('i')+','+bestNode.data('j'))
+		
 		// if(bestNode == desNode){
 		// 	console.log('到达节点'+bestNode.data('i')+','+bestNode.data('j'))
 		// 	console.log("=============寻路结束=================")
 		// }else{
-		return this.getPath(desNode, bestNode);
+		
 			// arguments.callee(desNode, bestNode)
 		// }
 		//√ 应该每次寻路时新建一个临时数组维护已经遍历的节点,这样最后还能直接取到最佳路径,如果图代码简单,像现在这样,千万别忘了每次寻路后将所有hasfind置为false
@@ -500,12 +554,64 @@
 
 	Page.prototype.moveTo = function(desNode){
 		var p = this.currentPage.data('neighbourNode');
-		console.log(p)
-		console.log(p.length)
-		var path = this.getPath(desNode, this.currentPage)
-		for(var i = 0 ; i < path.length ; i ++){
-			console.log(path[i].data('i')+','+path[i].data('j'))
+		path = undefined;
+		var aaa = find(this.currentPage, desNode)
+		// var aaa = find(this.arr[2][2], desNode)
+		console.log("计算得到的路径长度"+aaa.length)
+		for (var ii = 0; ii < aaa.length; ii++) {
+			console.log(aaa[ii].data('i')+','+aaa[ii].data('j'))
 		}
+			
+		// 自动寻路的时候,简单判断一下目标节点在当前节点的左右,然后只转身一次,另外动画要迅速进行
+
+		//当box动画结束事件,释放动画锁flag
+		this.box.on('transitionend', function(e) {
+			e.stopPropagation();
+			if(e.target == this){
+				_this.flag = true;
+				_this.boy.stop();
+				console.log(animArr)
+				var anim = animArr.shift();
+				if(anim){
+					anim();
+				}
+			}
+		});
+		var animArr = []
+		var temp;
+		var _this = this;
+		while(temp = path.shift()){
+			var i = temp.data('i');
+			var j = temp.data('j');
+			console.log(i+','+j)
+			var f = (function(i, j){
+				return function(){
+					if(_this.flag){
+						_this.initTime();
+						_this.boy.walk()
+						console.log(i)
+						console.log(j)
+						_this.box.css('transform', 'translateX(-'+j+'00%) translateY(-'+i+'00%)')
+						_this.border.css('transform', 'translateX('+j+'00%) translateY('+i+'00%)')
+						_this.currentPage.removeClass('active')
+						_this.currentPage = _this.arr[i][j];
+						_this.currentPage.addClass('active')
+						_this.flag = false;
+					}
+				}
+			})(i, j)
+			animArr.push(f);
+		}
+		console.log(animArr);
+		(animArr.shift())();
+	}
+
+	Page.prototype.stepTo = function(){
+
+	}
+
+	Page.prototype.skipTo = function(){
+
 	}
 	
 	myApp.Page = Page;

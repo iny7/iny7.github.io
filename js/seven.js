@@ -13,6 +13,7 @@
 /**
  * 2016.4.9 iny
  * 不能再漫无目的地写代码了,要把可以复用的部分总结起来
+ * 手势识别? 拖拽?
  */
 (function($){
 
@@ -32,38 +33,12 @@
 
 			var arrWidth = 0;
 			var arrHeight = arr.length;
-
 			var arrLength = arr.length;
+			var maxLength = 0;
 			for(var i = 0 ; i < arrLength ; i ++){
 				for(var j = 0 ; j < arr[i].length ; j ++){
 					arrWidth = arrWidth > arr[i].length ? maxLength : arr[i].length;
-					// if(arr[i-1] && arr[i-1][j] != undefined){
-					// 	console.log("上面有")
-					// 	// arr[i][j].data('canMoveTop', true);
-					// 	this.moveTo(desNode, arr[i-1][j])
-					// 	// this.moveTop(i, j)
-					// }
-					// //下面有
-					// if(arr[i+1] && arr[i+1][j] != undefined){
-					// 	console.log("下面有")
-					// 	// arr[i][j].data('canMoveDown', true);
-					// 	this.moveTo(desNode, arr[i+1][j])
-					// 	// this.moveBottom(i, j)
-					// }
-					// //左边有
-					// if(arr[j-1] && arr[i][j-1] != undefined){
-					// 	console.log("左边有")
-					// 	// arr[i][j].data('canMoveLeft', true);
-					// 	this.moveTo(desNode, arr[i][j-1])
-					// 	// this.moveLeft(i, j)
-					// }
-					// //右边有
-					// if(arr[j+1] && arr[i][j+1] != undefined && !arr[i][j+1].hasFind){
-					// 	console.log("右边有")
-					// 	// arr[i][j].data('canMoveRight',true);
-					// 	this.moveTo(desNode, arr[i][j+1])
-					// 	// this.moveRight(i, j)
-					// }
+					//对兄弟节点的操作是不是也可以抽出来放到这里啊!
 				}
 			}
 			this.elem.arrMaxLength = arrWidth > arrHeight ? arrWidth : arrHeight;
@@ -232,7 +207,8 @@
 	    'initKeyBoardEvnet' : function(){
 	    	var _this = this.elem;
 	    	$(document).keydown(function(event) {
-	    		event.preventDefault();
+	    		//键盘阻止默认将导致快捷键失效,每次快捷键刷新都要先让窗口失焦,纳闷好几天才突然想到是这里出的问题
+	    		// event.preventDefault();
 	    		var keyCode = event.keyCode;
 	    		switch(keyCode){
 	    			case 37:

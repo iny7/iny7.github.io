@@ -3,10 +3,13 @@
 	position:fixed; */
 	position:absolute;
 	display:flex;
+	border:6px solid transparent;
 	width:3rem;
 	height:3rem;
 	max-width:150px;
 	max-height:150px;
+	background:url("../images/wall.jpeg") repeat-y;
+	background-origin:border-box;
 	background-color:#DDD;
 	right:1.5rem;
 	top:0px;
