@@ -10,19 +10,68 @@
 	background-position: -200% -103%; 
 	/*增加了boy-container后,下面这些3d部分就不需要boy来完成,可以使代码更清晰*/
 	/* transform:rotateX(-70deg) skew(18deg); */
-	transform-origin:50% 100%;
+	-webkit-transform-origin:50% 100%;
+	   -moz-transform-origin:50% 100%;
+	    -ms-transform-origin:50% 100%;
+	        transform-origin:50% 100%;
 }
 .boyLeft{
-	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
+	   -moz-transform: rotateY(180deg);
+	        transform: rotateY(180deg);
 }
 .boy.walk{
-	animation: walk 1s steps(1,start) infinite backwards;
+	-webkit-animation: walk 1s steps(1,start) infinite backwards;
+	   -moz-animation: walk 1s steps(1,start) infinite backwards;
+	        animation: walk 1s steps(1,start) infinite backwards;
 }
 .boy.turnLeft{
-	animation: turn 1s steps(1,start) forwards;
+	-webkit-animation: turn 1s steps(1,start) forwards;
+	   -moz-animation: turn 1s steps(1,start) forwards;
+	        animation: turn 1s steps(1,start) forwards;
 }
 .boy.turnRight{
-	animation: turn 1s steps(1,start) reverse;
+	-webkit-animation: turn 1s steps(1,start) reverse;
+	   -moz-animation: turn 1s steps(1,start) reverse;
+	        animation: turn 1s steps(1,start) reverse;
+}
+@-webkit-keyframes walk{
+	25%{
+		/* background-color:yellow; */
+		background-position: -400% 0;
+	}
+	50%{
+		/* background-color:green; */
+		background-position: -200% -103%; 
+		
+	}
+	75%{
+		background-position: -100% -103%;
+		/* background-color:red; */
+	}
+	100%{
+		/* background-color:blue; */
+		background-position: 0 -103%; 
+	}
+}
+@-moz-keyframes walk{
+	25%{
+		/* background-color:yellow; */
+		background-position: -400% 0;
+	}
+	50%{
+		/* background-color:green; */
+		background-position: -200% -103%; 
+		
+	}
+	75%{
+		background-position: -100% -103%;
+		/* background-color:red; */
+	}
+	100%{
+		/* background-color:blue; */
+		background-position: 0 -103%; 
+	}
 }
 @keyframes walk{
 	25%{
@@ -43,29 +92,105 @@
 		background-position: 0 -103%; 
 	}
 }
-@keyframes turn {
+@-webkit-keyframes turn {
 	17%{
 		background-position: -600% -103%;
-		transform:rotateY(0deg);
+		-webkit-transform:rotateY(0deg);
+		        transform:rotateY(0deg);
 	}
 	33%{
 		background-position: -500% -103%; 
-		transform:rotateY(0deg);
+		-webkit-transform:rotateY(0deg); 
+		        transform:rotateY(0deg);
 	}
 	50%{
 		background-position: -400% -103%;
-		transform:rotateY(0deg);
+		-webkit-transform:rotateY(0deg);
+		        transform:rotateY(0deg);
 	}
 	67%{
 		background-position: -500% -103%;
-		transform:rotateY(180deg);
+		-webkit-transform:rotateY(180deg);
+		        transform:rotateY(180deg);
 	}
 	83%{
 		background-position: -600% -103%; 
-		transform:rotateY(180deg);
+		-webkit-transform:rotateY(180deg); 
+		        transform:rotateY(180deg);
 	}
 	100%{
 		background-position: -200% -103%; 
-		transform:rotateY(180deg);
+		-webkit-transform:rotateY(180deg); 
+		        transform:rotateY(180deg);
+	}
+}
+@-moz-keyframes turn {
+	17%{
+		background-position: -600% -103%;
+		-moz-transform:rotateY(0deg);
+		     transform:rotateY(0deg);
+	}
+	33%{
+		background-position: -500% -103%; 
+		-moz-transform:rotateY(0deg); 
+		     transform:rotateY(0deg);
+	}
+	50%{
+		background-position: -400% -103%;
+		-moz-transform:rotateY(0deg);
+		     transform:rotateY(0deg);
+	}
+	67%{
+		background-position: -500% -103%;
+		-moz-transform:rotateY(180deg);
+		     transform:rotateY(180deg);
+	}
+	83%{
+		background-position: -600% -103%; 
+		-moz-transform:rotateY(180deg); 
+		     transform:rotateY(180deg);
+	}
+	100%{
+		background-position: -200% -103%; 
+		-moz-transform:rotateY(180deg); 
+		     transform:rotateY(180deg);
+	}
+}
+@keyframes turn {
+	17%{
+		background-position: -600% -103%;
+		-webkit-transform:rotateY(0deg);
+		   -moz-transform:rotateY(0deg);
+		        transform:rotateY(0deg);
+	}
+	33%{
+		background-position: -500% -103%; 
+		-webkit-transform:rotateY(0deg); 
+		   -moz-transform:rotateY(0deg); 
+		        transform:rotateY(0deg);
+	}
+	50%{
+		background-position: -400% -103%;
+		-webkit-transform:rotateY(0deg);
+		   -moz-transform:rotateY(0deg);
+		        transform:rotateY(0deg);
+	}
+	67%{
+		background-position: -500% -103%;
+		-webkit-transform:rotateY(180deg);
+		   -moz-transform:rotateY(180deg);
+		        transform:rotateY(180deg);
+	}
+	83%{
+		background-position: -600% -103%; 
+		-webkit-transform:rotateY(180deg); 
+		   -moz-transform:rotateY(180deg); 
+		        transform:rotateY(180deg);
+	}
+	100%{
+		background-position: -200% -103%; 
+		-webkit-transform:rotateY(180deg); 
+		   -moz-transform:rotateY(180deg); 
+		        transform:rotateY(180deg);
 	}
 }

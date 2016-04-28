@@ -554,18 +554,22 @@
 
 	Page.prototype.moveTo = function(desNode){
 		var p = this.currentPage.data('neighbourNode');
+		//因为寻路函数借用了一个全局变量,所以先把该变量重置
 		path = undefined;
-		var aaa = find(this.currentPage, desNode)
+		find(this.currentPage, desNode)
+		//使用的算法保留了起点,要去掉先
+		path.shift()
 		// var aaa = find(this.arr[2][2], desNode)
-		console.log("计算得到的路径长度"+aaa.length)
-		for (var ii = 0; ii < aaa.length; ii++) {
-			console.log(aaa[ii].data('i')+','+aaa[ii].data('j'))
-		}
+		console.log("计算得到的路径长度"+path.length)
+		// for (var ii = 0; ii < aaa.length; ii++) {
+			// console.log(aaa[ii].data('i')+','+aaa[ii].data('j'))
+		// }
 			
 		// 自动寻路的时候,简单判断一下目标节点在当前节点的左右,然后只转身一次,另外动画要迅速进行
 
 		//当box动画结束事件,释放动画锁flag
 		this.box.on('transitionend', function(e) {
+			console.log("下一个")
 			e.stopPropagation();
 			if(e.target == this){
 				_this.flag = true;
@@ -602,7 +606,7 @@
 			})(i, j)
 			animArr.push(f);
 		}
-		console.log(animArr);
+		console.log(animArr[animArr.length]);
 		(animArr.shift())();
 	}
 

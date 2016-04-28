@@ -2,8 +2,12 @@
 	/* fixed在Safari下被压在每页的蒙版层下
 	position:fixed; */
 	position:absolute;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-moz-box;
+	display:-ms-flexbox;
 	display:flex;
-	border:6px solid transparent;
+	/* border:2px solid transparent; */
 	width:3rem;
 	height:3rem;
 	max-width:150px;
@@ -14,14 +18,28 @@
 	right:1.5rem;
 	top:0px;
 	z-index:20;
-	box-shadow:0 0 10px 4px #CCC;
-	transform-style:preserve-3d;
-	transform-origin:50% 100%;
-	transform:rotateX(60deg) skew(-20deg);
+	-webkit-box-shadow:0 0 10px 4px #CCC;
+	        box-shadow:0 0 10px 4px #CCC;
+	-webkit-transform-style:preserve-3d;
+	   -moz-transform-style:preserve-3d;
+	        transform-style:preserve-3d;
+	-webkit-transform-origin:50% 100%;
+	   -moz-transform-origin:50% 100%;
+	    -ms-transform-origin:50% 100%;
+	        transform-origin:50% 100%;
+	-webkit-transform:rotateX(60deg) skew(-20deg);
+	   -moz-transform:rotateX(60deg) skew(-20deg);
+	        transform:rotateX(60deg) skew(-20deg);
 }
 .map ol{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:-moz-box;
+	display:-ms-flexbox;
 	display:flex;
-	flex-wrap:wrap;
+	-webkit-flex-wrap:wrap;
+	    -ms-flex-wrap:wrap;
+	        flex-wrap:wrap;
 	width:100%;
 	height:100%;
 	background:url("../images/wall.jpeg");
@@ -41,16 +59,22 @@
 	position:absolute;
 	z-index:9;
 	background-color:transparent;
-	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	   -moz-box-sizing:border-box;
+	        box-sizing:border-box;
 	border-radius:0;
 	/* background-color:red; */
-	transform-style:preserve-3d;
+	-webkit-transform-style:preserve-3d;
+	   -moz-transform-style:preserve-3d;
+	        transform-style:preserve-3d;
 }
 .boy-container{
 	width:100%;
 	height:100%;
 	/* background-color: green; */
-	transform: scaleX(0.8) rotateX(-90deg) translateY(-50%);
+	-webkit-transform: scaleX(0.8) rotateX(-90deg) translateY(-50%);
+	   -moz-transform: scaleX(0.8) rotateX(-90deg) translateY(-50%);
+	        transform: scaleX(0.8) rotateX(-90deg) translateY(-50%);
 }
 .cell a{
 	display:block;

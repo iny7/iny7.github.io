@@ -1,0 +1,7 @@
+{
+    "input": "dev/css/*.css",
+    "dir": "css/",
+    "autoprefixer": {
+        "browsers": ["> 1%", "Firefox >= 10", "ie >= 6", "iOS >= 4", "Chrome >= 10"]
+    }
+}
