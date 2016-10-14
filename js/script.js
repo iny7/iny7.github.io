@@ -17,6 +17,8 @@ $(function(){
 		[,$("#page-3-2")	, $("#page-3-3"),],
 	]
 
+	document.body.addEventListener('touchstart', function (e) {e.preventDefault();}, false)
+
 	//入口前判断,如果是移动端,delay为0,不要地图
 	//给ctrl一个重置的方法,当窗口小于700的时候,
 	//改他的delay等 注意取消不需要的方法 以节约内存
@@ -35,13 +37,11 @@ $(function(){
 	// 		$(this).css('animation-play-state', 'running');
 	// 	});
 	// }
-	
+
 	//Map是内建的对象!注意命名!
 	var page = new myApp.Page(arr, options)
 	window.page = page;
 	$(page).seven();
-	// $(page).seven();
-	
 
 	//有监听功能的是seven,要不在监听里写this.elem.trigger
 	// seven.remFont();

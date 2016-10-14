@@ -53,6 +53,7 @@ body {
 	position:absolute;
 	height:100%;
 	width:100%;
+	overflow: hidden;
 	-webkit-transition: -webkit-transform 1s ease-out;
 	transition: -webkit-transform 1s ease-out;
 	-moz-transition: transform 1s ease-out, -moz-transform 1s ease-out;
